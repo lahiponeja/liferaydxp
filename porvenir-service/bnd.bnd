@@ -1,0 +1,4 @@
+Bundle-Name: porvenir-service
+Bundle-SymbolicName: co.com.porvenir.porvenir_service
+Bundle-Version: 0.0.1-SNAPSHOT
+Liferay-Configuration-Path: /configuration
