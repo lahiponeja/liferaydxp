@@ -1,0 +1,9 @@
+Bundle-Name: porvenir
+Bundle-SymbolicName: co.com.general.porvenir
+Bundle-Version: 0.0.1-SNAPSHOT
+Export-Package: co.com.general.porvenir.constants
+-jsp: *.jsp,*.jspf
+-plugin.jsp: com.liferay.ant.bnd.jsp.JspAnalyzerPlugin
+-plugin.resourcebundle: com.liferay.ant.bnd.resource.bundle.ResourceBundleLoaderAnalyzerPlugin
+-plugin.sass: com.liferay.ant.bnd.sass.SassAnalyzerPlugin
+-sass: *

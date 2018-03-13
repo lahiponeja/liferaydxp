@@ -2,3 +2,10 @@ Bundle-Name: porvenir-service
 Bundle-SymbolicName: co.com.porvenir.porvenir_service
 Bundle-Version: 0.0.1-SNAPSHOT
 Liferay-Configuration-Path: /configuration
+
+Include-Resource: @javax.ws.rs-api-2.0.1.jar,@resteasy-jaxrs-3.0.24.Final.jar,@resteasy-multipart-provider-2.2.1.GA.jar,\
+
+Import-Package: \
+    !org.jboss.resteasy.*,\
+    !javax.ws.rs.*,\
+    
