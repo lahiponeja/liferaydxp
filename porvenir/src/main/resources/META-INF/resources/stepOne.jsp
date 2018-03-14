@@ -10,7 +10,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.TreeMap"%>
 <%@ page import="java.util.Map"%>
-
+<%@ page import="co.com.RetiroCesantiasPorlet.constants.RetiroCesantiasPortletKeys"%>
 
 <%
 ThemeDisplay themeD=null;
@@ -18,8 +18,8 @@ if (request != null) {
 	themeD = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 }
  Long groupId = themeD.getCompany().getGroup().getGroupId();
- String fileTitle = "ArchivoRetiroMasivoCesantiasEmpleador";
- 
+ String fileTitleCh = RetiroCesantiasPortletKeys.tituloArchivoCheque;
+ String fileTitleCU = RetiroCesantiasPortletKeys.tituloArchivoCuenta;
 
  
 List<DLFolder> listFolder = DLFolderLocalServiceUtil.getDLFolders(-1, -1);
@@ -28,16 +28,28 @@ Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
  //DLFolder dlFolder = DLFolderLocalServiceUtil.getFolder(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docs");
  long folder=44831;
 
- DLFileEntry fileEntry =com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(44835);
+ DLFileEntry fileEntryCH =com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
 
  
- fileEntry = fileEntry.toEscapedModel();
+ fileEntryCH = fileEntryCH.toEscapedModel();
 
- long fileEntryId = fileEntry.getFileEntryId();
- long folderId = fileEntry.getFolderId();
- String name = fileEntry.getName();
- String extension = fileEntry.getExtension();
- String title = fileEntry.getTitle();
+ long fileEntryIdCh = fileEntryCH.getFileEntryId();
+ long folderIdCh = fileEntryCH.getFolderId();
+ String nameCh = fileEntryCH.getName();
+ String extensionCh = fileEntryCH.getExtension();
+ String titleCh = fileEntryCH.getTitle();
+
+ 
+ DLFileEntry fileEntryCU =com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
+
+ 
+ fileEntryCU = fileEntryCU.toEscapedModel();
+
+ long fileEntryIdCu = fileEntryCU.getFileEntryId();
+ long folderIdCu = fileEntryCU.getFolderId();
+ String nameCu = fileEntryCU.getName();
+ String extensionCu = fileEntryCU.getExtension();
+ String titleCH = fileEntryCU.getTitle();
 
 %>
 <portlet:resourceURL var="resourceURL"/>
@@ -45,16 +57,16 @@ Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
 		<div class="col-md-12">
 				<div class="page-header">
 					<h1>
-						Descargue el archivo excel
+						<%=RetiroCesantiasPortletKeys.descargue %>
 					</h1>
 				</div>
 				<dl>
 					<dt>
-						¿Ya diligencio su Excel?
+						<%=RetiroCesantiasPortletKeys.diligencio %>
 					</dt>
 					
 					<dt>
-						A continuación podrá subir el archivo de Excel que descargo un vez lo haya diligenciado-
+						<%=RetiroCesantiasPortletKeys.subir %>
 					</dt>
 					<dd>
 						<span>.</span>
@@ -62,11 +74,11 @@ Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
 				</dl>
 				<ul class="nav" style="display: inline;">
 					<li class="nav-item">
-						<a class="nav-link active" href="<%= themeD.getPathMain() %>/document_library/get_file?folderId=<%= folderId %>&name=<%= HttpUtil.encodeURL(name) %>">%= fileEntry.getTitle() %">.xls Abono a cuentas</a>
+						<a class="nav-link active" href="<%= themeD.getPathMain() %>/document_library/get_file?folderId=<%= folderIdCh %>&name=<%= HttpUtil.encodeURL(nameCh) %>">	<%=RetiroCesantiasPortletKeys.tituloArchivoCheque %></a>
 					
 						</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">.xls Pago por cheque</a>
+						<a class="nav-link" href="<%= themeD.getPathMain() %>/document_library/get_file?folderId=<%= folderIdCu %>&name=<%= HttpUtil.encodeURL(nameCu) %>">	<%=RetiroCesantiasPortletKeys.tituloArchivoCuenta %></a>
 					</li>
 					
 				</ul>
@@ -78,7 +90,7 @@ Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
 						</label>
 						<input type="file" class="form-control-file" id="exampleInputFile">
 						<p class="help-block">
-							Example block-level help text here.
+							<%=RetiroCesantiasPortletKeys.ayudaAdjuntar %>
 						</p>
 					</div>
 					<div class="progress">
@@ -88,11 +100,11 @@ Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
 					<div class="checkbox">
 						 
 						<label>
-							<input type="checkbox"> Adjunte su archivo
+							<input type="checkbox"> <%=RetiroCesantiasPortletKeys.adjunte %>
 						</label>
 					</div> 
 					<button type="submit" class="btn btn-primary">
-						Continuar
+						 <%=RetiroCesantiasPortletKeys.continuar %>
 					</button>
 				</form>
 			</div>

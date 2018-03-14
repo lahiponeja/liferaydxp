@@ -13,16 +13,16 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
-
+import co.com.RetiroCesantiasPorlet.constants.RetiroCesantiasPortletKeys;
 /**
  * @author Manuel
  */
 @Component(
 	immediate = true,
 	property = {
-		"com.liferay.portlet.display-category=category.sample",
+		"com.liferay.portlet.display-category=category.Porvenir",
 		"com.liferay.portlet.instanceable=true",
-		"javax.portlet.display-name=porvenir Portlet",
+		"javax.portlet.display-name=" + RetiroCesantiasPortletKeys.Caption,
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/view.jsp",
 		"javax.portlet.name=" + ControlerPortletKeys.Controler,
