@@ -11,12 +11,12 @@ public class Enviroment {
 	private String serviceURLCartera;
 	
 	public Enviroment (){
-		serviceURLCartera = "http://localhost:8068/mockBasicHttpBinding_ITwoWayAsync?WSDL";
+		serviceURLCartera = "http://localhost:9090/mockServicioWebCesantiasAfiliadosServiceSoapBinding?WSDL";
 	}
 
 	public String getServiceURLCartera() {
 		if (serviceURLCartera == null || serviceURLCartera.isEmpty()){
-			serviceURLCartera = "http://localhost:8068/mockBasicHttpBinding_ITwoWayAsync?WSDL";
+			serviceURLCartera = "http://localhost:9090/mockServicioWebCesantiasAfiliadosServiceSoapBinding?WSDL";
 		}
 		return serviceURLCartera;
 	}
