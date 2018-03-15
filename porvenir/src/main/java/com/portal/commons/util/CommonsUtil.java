@@ -18,7 +18,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  * @author luis.hernandez
  */
-public class DPWUtil {
+public class CommonsUtil {
 
 	/*
 	 * CONSTANTES
@@ -29,7 +29,7 @@ public class DPWUtil {
 	public static final String FORMATO_NUMBER = "#,###";
 	public static final String PORCENTAJE = "%";
 	
-	private DPWUtil() {
+	private CommonsUtil() {
 
 	}
 	
@@ -66,7 +66,7 @@ public class DPWUtil {
 			df.setMinimumFractionDigits(0);
 			df.setGroupingUsed(true);
 			if (symbolMoney){
-				return DPWUtil.addSymbolMoney(df.format(var));
+				return CommonsUtil.addSymbolMoney(df.format(var));
 			}else{
 				return df.format(var);
 			}
@@ -88,7 +88,7 @@ public class DPWUtil {
 			df.setMinimumFractionDigits(0);
 			df.setGroupingUsed(true);
 			if (symbolMoney){
-				return DPWUtil.addSymbolMoney(df.format(var));
+				return CommonsUtil.addSymbolMoney(df.format(var));
 			}else{
 				return df.format(var);
 			}
@@ -111,7 +111,7 @@ public class DPWUtil {
 			df.setMinimumFractionDigits(0);
 			df.setGroupingUsed(true);
 			if (symbolMoney){
-				return DPWUtil.addSymbolMoney(df.format(varDouble));
+				return CommonsUtil.addSymbolMoney(df.format(varDouble));
 			}else{
 				return df.format(varDouble);
 			}

@@ -12,7 +12,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.portal.commons.util.DPWUtil;
+import com.portal.commons.util.CommonsUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -80,7 +80,7 @@ public class ControlerPortlet extends MVCPortlet {
 						DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docsUpload");
 
 				DLAppLocalServiceUtil.addFileEntry(userId, groupId, dir.getFolderId(), "uploadPorvenir",
-						new MimetypesFileTypeMap().getContentType(file), userId+"_"+DPWUtil.stringToCalendar(Calendar.getInstance())+"_"+fileName, "", "", file, serviceContext);
+						new MimetypesFileTypeMap().getContentType(file), userId+"_"+CommonsUtil.stringToCalendar(Calendar.getInstance())+"_"+fileName, "", "", file, serviceContext);
 			} catch (PortalException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
