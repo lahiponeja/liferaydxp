@@ -1,3 +1,9 @@
+<%@page import="com.liferay.portal.kernel.service.ServiceContext"%>
+<%@page import="javax.activation.MimetypesFileTypeMap"%>
+<%@page import="com.liferay.document.library.kernel.service.DLAppLocalServiceUtil"%>
+<%@page import="java.util.Comparator"%>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.liferay.document.library.kernel.model.DLFolderConstants"%>
 <%@page import="com.liferay.portal.kernel.util.HttpUtil"%>
 <%@ page import="com.liferay.portal.kernel.theme.ThemeDisplay"%>
@@ -12,6 +18,9 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="co.com.RetiroCesantiasPorlet.constants.RetiroCesantiasPortletKeys"%>
 
+
+<portlet:actionURL name="uploadDocument" var="uploadDocumentURL"></portlet:actionURL>
+
 <%
 ThemeDisplay themeD=null;
 if (request != null) {
@@ -20,7 +29,6 @@ if (request != null) {
  Long groupId = themeD.getCompany().getGroup().getGroupId();
  String fileTitleCh = RetiroCesantiasPortletKeys.tituloArchivoCheque;
  String fileTitleCU = RetiroCesantiasPortletKeys.tituloArchivoCuenta;
-
  
 List<DLFolder> listFolder = DLFolderLocalServiceUtil.getDLFolders(-1, -1);
 Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
@@ -28,7 +36,7 @@ Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
  //DLFolder dlFolder = DLFolderLocalServiceUtil.getFolder(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docs");
  long folder=44831;
 
- DLFileEntry fileEntryCH =com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
+ DLFileEntry fileEntryCH =com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(37574);
 
  
  fileEntryCH = fileEntryCH.toEscapedModel();
@@ -40,7 +48,7 @@ Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
  String titleCh = fileEntryCH.getTitle();
 
  
- DLFileEntry fileEntryCU =com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
+ DLFileEntry fileEntryCU =com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(37574);
 
  
  fileEntryCU = fileEntryCU.toEscapedModel();
@@ -51,6 +59,33 @@ Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
  String extensionCu = fileEntryCU.getExtension();
  String titleCH = fileEntryCU.getTitle();
 
+ 
+ 
+//Obtengo el directorio en el que están los archivos de la matriz
+	DLFolder dir = DLFolderLocalServiceUtil.getFolder(themeDisplay.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docsUpload");
+
+	//Se obtienen los ficheros del directorio
+	List<DLFileEntry> dLFileEntrys = DLFileEntryLocalServiceUtil.getFileEntries(dir.getGroupId(), dir.getFolderId());
+	
+	List<DLFileEntry> dLFileEntrysAux=new ArrayList<DLFileEntry>(dLFileEntrys);
+	
+	Collections.sort(dLFileEntrysAux, new Comparator<DLFileEntry>(){
+
+		
+		public int compare(DLFileEntry o1, DLFileEntry o2) {
+			return o1.getTitle().compareTo(o2.getTitle());
+		}
+	});
+	
+	for (DLFileEntry file : dLFileEntrysAux) {
+		if(file.getExtension().equals("xlsx")){
+			System.out.println("nombre: " + file.getTitle());
+			
+		}
+	}
+	
+
+ 
 %>
 <portlet:resourceURL var="resourceURL"/>
 	<div class="row">
@@ -82,13 +117,13 @@ Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
 					</li>
 					
 				</ul>
-				<form role="form" enctype="multipart/form-data">
+				<form id="uploadDoc" name="uploadDoc" action="${uploadDocumentURL}" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						 
 						<label for="exampleInputFile">
 							Adjunte su archivo
 						</label>
-						<input type="file" class="form-control-file" id="exampleInputFile">
+						<input type="file" class="form-control-file" id="uploadFile" name="uploadFile">
 						<p class="help-block">
 							<%=RetiroCesantiasPortletKeys.ayudaAdjuntar %>
 						</p>

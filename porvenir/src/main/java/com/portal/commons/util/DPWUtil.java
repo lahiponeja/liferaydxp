@@ -25,7 +25,7 @@ public class DPWUtil {
 	 */
 	public static final String BLANK = "";
 	public static final String MONEDA = "$";
-	public static final String FORMATO_FECHA = "dd/MM/yyyy";
+	public static final String FORMATO_FECHA = "dd-MM-yyyy'T'HH-mm-ss";
 	public static final String FORMATO_NUMBER = "#,###";
 	public static final String PORCENTAJE = "%";
 	
@@ -215,9 +215,8 @@ public class DPWUtil {
 	 * @param xmlGregorianCalendar Fecha en formato gregorian
 	 * @return Fecha convertida a String
 	 */
-	public static String stringToXMLGregorianCalendar(XMLGregorianCalendar xmlGregorianCalendar) {
-		if (xmlGregorianCalendar != null) {
-			Calendar calendar = xmlGregorianCalendar.toGregorianCalendar();
+	public static String stringToCalendar(Calendar calendar) {
+		if (calendar != null) {
 			SimpleDateFormat formatter = new SimpleDateFormat(FORMATO_FECHA);
 			formatter.setTimeZone(calendar.getTimeZone());
 			return formatter.format(calendar.getTime());
