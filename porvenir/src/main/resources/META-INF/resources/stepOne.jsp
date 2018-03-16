@@ -1,35 +1,25 @@
-<%@page
-	import="com.liferay.document.library.kernel.model.DLFolderConstants"%>
+<%@page import="com.liferay.portal.kernel.service.ServiceContext"%>
+<%@page import="javax.activation.MimetypesFileTypeMap"%>
+<%@page import="com.liferay.document.library.kernel.service.DLAppLocalServiceUtil"%>
+<%@page import="java.util.Comparator"%>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.liferay.document.library.kernel.model.DLFolderConstants"%>
 <%@page import="com.liferay.portal.kernel.util.HttpUtil"%>
 <%@ page import="com.liferay.portal.kernel.theme.ThemeDisplay"%>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil"%>
 <%@ page import="com.liferay.portal.kernel.util.WebKeys"%>
 <%@ page import="com.liferay.document.library.kernel.model.DLFileEntry"%>
-<%@ page
-	import="com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil"%>
+<%@ page import="com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil"%>
 <%@ page import="com.liferay.document.library.kernel.model.DLFolder"%>
-<%@ page
-	import="com.liferay.document.library.kernel.service.DLFolderLocalServiceUtil"%>
+<%@ page import="com.liferay.document.library.kernel.service.DLFolderLocalServiceUtil"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.TreeMap"%>
 <%@ page import="java.util.Map"%>
-<%@ page
-	import="co.com.RetiroCesantiasPorlet.constants.RetiroCesantiasPortletKeys"%>
-	
-	
-<%@ page import="co.com.general.porvenir.constants.ControlerPortletKeys"%>
-
-<portlet:defineObjects />
+<%@ page import="co.com.RetiroCesantiasPorlet.constants.RetiroCesantiasPortletKeys"%>
 
 
-<portlet:actionURL  name="uploadDocument" var="actionUpload">
- <portlet:param name="serverParam" value="<%=ControlerPortletKeys.UploadFile %>"/>
-</portlet:actionURL>
-
-<portlet:resourceURL var="formURL">
-    <portlet:param name="serverParam" value="<%=ControlerPortletKeys.UploadFile %>"/>
-</portlet:resourceURL>
-
+<portlet:actionURL name="uploadDocument" var="uploadDocumentURL"></portlet:actionURL>
 
 <%
 	ThemeDisplay themeD = null;
@@ -46,8 +36,7 @@
 	//DLFolder dlFolder = DLFolderLocalServiceUtil.getFolder(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docs");
 	long folder = 44831;
 
-	DLFileEntry fileEntryCH = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil
-			.getDLFileEntry(31724);
+	DLFileEntry fileEntryCH = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
 
 	fileEntryCH = fileEntryCH.toEscapedModel();
 
@@ -57,8 +46,7 @@
 	String extensionCh = fileEntryCH.getExtension();
 	String titleCh = fileEntryCH.getTitle();
 
-	DLFileEntry fileEntryCU = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil
-			.getDLFileEntry(31724);
+	DLFileEntry fileEntryCU = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
 
 	fileEntryCU = fileEntryCU.toEscapedModel();
 
@@ -67,7 +55,33 @@
 	String nameCu = fileEntryCU.getName();
 	String extensionCu = fileEntryCU.getExtension();
 	String titleCH = fileEntryCU.getTitle();
+	//Obtengo el directorio en el que están los archivos de la matriz
+	DLFolder dir = DLFolderLocalServiceUtil.getFolder(themeDisplay.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docsUpload");
+
+	//Se obtienen los ficheros del directorio
+	List<DLFileEntry> dLFileEntrys = DLFileEntryLocalServiceUtil.getFileEntries(dir.getGroupId(), dir.getFolderId());
+	
+	List<DLFileEntry> dLFileEntrysAux=new ArrayList<DLFileEntry>(dLFileEntrys);
+	
+	Collections.sort(dLFileEntrysAux, new Comparator<DLFileEntry>(){
+
+		
+		public int compare(DLFileEntry o1, DLFileEntry o2) {
+			return o1.getTitle().compareTo(o2.getTitle());
+		}
+	});
+	
+	for (DLFileEntry file : dLFileEntrysAux) {
+		if(file.getExtension().equals("xlsx")){
+			System.out.println("nombre: " + file.getTitle());
+			
+		}
+	}
+	
+
+ 
 %>
+
 <portlet:resourceURL var="resourceURL" />
 <div class="row">
 	<div class="col-md-12">
@@ -89,23 +103,17 @@
 			</dd>
 		</dl>
 		<ul class="nav" style="display: inline;">
-			<li class="nav-item"><a class="nav-link active"
-				href="<%=themeD.getPathMain()%>/document_library/get_file?folderId=<%=folderIdCh%>&name=<%=HttpUtil.encodeURL(nameCh)%>"><liferay-ui:message
-						key="RetiroCesantiasPorlet.tituloArchivoCheque" />.xls</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="<%=themeD.getPathMain()%>/document_library/get_file?folderId=<%=folderIdCu%>&name=<%=HttpUtil.encodeURL(nameCu)%>">.xls<liferay-ui:message
-						key="RetiroCesantiasPorlet.tituloArchivoCuenta" /></a></li>
+			<li class="nav-item"><a class="nav-link active" href="<%=themeD.getPathMain()%>/document_library/get_file?folderId=<%=folderIdCh%>&name=<%=HttpUtil.encodeURL(nameCh)%>"><liferay-ui:message key="RetiroCesantiasPorlet.tituloArchivoCheque" />.xls</a></li>
+			<li class="nav-item"><a class="nav-link"  href="<%=themeD.getPathMain()%>/document_library/get_file?folderId=<%=folderIdCu%>&name=<%=HttpUtil.encodeURL(nameCu)%>">.xls<liferay-ui:message key="RetiroCesantiasPorlet.tituloArchivoCuenta" /></a></li>
 
 		</ul>
-		<aui:form id="inputForm" name="inputForm"
-			enctype="multipart/form-data">
+		<aui:form id="uploadDoc" name="uploadDoc" action="${uploadDocumentURL}" method="post" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="exampleInputFile"> <liferay-ui:message
 						key="RetiroCesantiasPorlet.tituloAdjuntar" />
 
 				</label>
-				<aui:input type="file" class="form-control-file" id="inputFile"
-					name="inputFile"></aui:input>
+				<aui:input type="file" class="form-control-file" id="uploadFile" name="uploadFile"></aui:input>
 				<p class="help-block">
 					<liferay-ui:message key="RetiroCesantiasPorlet.ayudaAdjuntar" />
 				</p>
@@ -115,7 +123,7 @@
 			</div>
 			<div class="checkbox">
 
-				<label> <aui:input id="checkInput" name="checkInput" type="checkbox"> <liferay-ui:message	key="RetiroCesantiasPorlet.adjunte" /></aui:input>
+				<label> <aui:input id="checkInput" id="checkInput" name="checkInput" type="checkbox"> <liferay-ui:message	key="RetiroCesantiasPorlet.adjunte" /></aui:input>
 				</label>
 			</div>
 			<aui:button type="submit" class="btn btn-primary" id="btnUploadFile" name="btnUploadFile" value="RetiroCesantiasPorlet.continuar">
@@ -140,7 +148,7 @@
 			  'aui-form-validator',
 			  function(Y) {
 				  var rules = {
-						  <portlet:namespace/>inputFile: {
+						  <portlet:namespace/>uploadFile: {
 						        acceptFiles: 'xls, xlsx',
 						        required: true
 						      },
@@ -150,7 +158,7 @@
 						  };
 
 						var fieldStrings = {
-								<portlet:namespace/>inputFile: {
+								<portlet:namespace/>uploadFile: {
 								acceptFiles: 'El tipo de archivo requerido es excel',
 						        required: 'El archivo es requerido.'
 						      	},
@@ -163,7 +171,7 @@
 			   
 						
 						var validator = new Y.FormValidator({
-							  boundingBox: '#<portlet:namespace/>inputForm',
+							  boundingBox: '#<portlet:namespace/>uploadFile',
 						        fieldStrings: fieldStrings,
 								rules: rules,
 								showAllMessages: true,
@@ -215,7 +223,7 @@
 								
 								Y.io.request(url, {
 									method: 'POST',
-									form: { id: '<portlet:namespace />inputForm' },
+									form: { id: '<portlet:namespace />uploadFile' },
 									dataType: 'json',
 									on:{
 									success: function(event, id, ob){
@@ -239,16 +247,8 @@
 										}
 									}
 								});
-								
-								
-							}
-						
-						
-					
-						
-						
-
-			  }
+						}
+				  }
 			);
 	
 
