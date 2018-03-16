@@ -22,8 +22,9 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.io.IOUtils;
-//import org.jboss.resteasy.plugins.providers.multipart.InputPart;
-//import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
+import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
+import org.jboss.resteasy.plugins.providers.multipart.InputPart;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -70,7 +71,7 @@ public class ServiceApplication extends Application {
 	@POST
 	@Path("/upload")
 	@Consumes("multipart/form-data")
-	public Response uploadFile(@MultipartForm FileUploadForm form) {
+	public Response uploadFile(MultipartFormDataInput input) {
 
 		String fileName = "";
 
