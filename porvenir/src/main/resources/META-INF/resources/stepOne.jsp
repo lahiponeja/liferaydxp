@@ -32,6 +32,7 @@
 
 
 <%
+
 	ThemeDisplay themeD = null;
 	if (request != null) {
 		themeD = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
@@ -39,7 +40,11 @@
 	Long groupId = themeD.getCompany().getGroup().getGroupId();
 	String fileTitleCh = RetiroCesantiasPortletKeys.tituloArchivoCheque;
 	String fileTitleCU = RetiroCesantiasPortletKeys.tituloArchivoCuenta;
-
+	long folderIdCu = 0;
+	long folderIdCh = 0;
+	String nameCu = "";
+	String nameCh = "";
+	try {
 	List<DLFolder> listFolder = DLFolderLocalServiceUtil.getDLFolders(-1, -1);
 	Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
 	DLFolder folderDL = folders.get("docs");
@@ -52,21 +57,28 @@
 	fileEntryCH = fileEntryCH.toEscapedModel();
 
 	long fileEntryIdCh = fileEntryCH.getFileEntryId();
-	long folderIdCh = fileEntryCH.getFolderId();
-	String nameCh = fileEntryCH.getName();
+	folderIdCh = fileEntryCH.getFolderId();
+	nameCh = fileEntryCH.getName();
 	String extensionCh = fileEntryCH.getExtension();
 	String titleCh = fileEntryCH.getTitle();
+	
+	
+	
+		DLFileEntry fileEntryCU = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil
+				.getDLFileEntry(31724);
+		fileEntryCU = fileEntryCU.toEscapedModel();
 
-	DLFileEntry fileEntryCU = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil
-			.getDLFileEntry(31724);
+		long fileEntryIdCu = fileEntryCU.getFileEntryId();
+		folderIdCu = fileEntryCU.getFolderId();
+		nameCu = fileEntryCU.getName();
+		String extensionCu = fileEntryCU.getExtension();
+		String titleCH = fileEntryCU.getTitle();
+	}catch(Exception e){
+			
+	}
+	
 
-	fileEntryCU = fileEntryCU.toEscapedModel();
-
-	long fileEntryIdCu = fileEntryCU.getFileEntryId();
-	long folderIdCu = fileEntryCU.getFolderId();
-	String nameCu = fileEntryCU.getName();
-	String extensionCu = fileEntryCU.getExtension();
-	String titleCH = fileEntryCU.getTitle();
+	
 %>
 <portlet:resourceURL var="resourceURL" />
 <div class="row">

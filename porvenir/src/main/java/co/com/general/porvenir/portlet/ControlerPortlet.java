@@ -46,7 +46,7 @@ public class ControlerPortlet extends MVCPortlet {
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
 			throws IOException, PortletException {
 		try {
-			ServiceConsumer.INSTANCE.consumeConsultarProductoCompania("1", "2");
+			ServiceConsumer.INSTANCE.consultarAfiliados("1", "2");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
