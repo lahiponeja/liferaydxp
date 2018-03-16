@@ -161,7 +161,7 @@
 			</activation>
 			<properties>
 				<build.profile.id>dev</build.profile.id>
-				<wsdl.url>http://localhost:8068/mockBasicHttpBinding_ITwoWayAsync?WSDL</wsdl.url>
+				<wsdl.url>http://localhost:9090/mockServicioWebCesantiasAfiliadosServiceSoapBinding?WSDL</wsdl.url>
 			</properties>
 		</profile>
 		
