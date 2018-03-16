@@ -171,7 +171,7 @@
 			   
 						
 						var validator = new Y.FormValidator({
-							  boundingBox: '#<portlet:namespace/>inputForm',
+							  boundingBox: '#<portlet:namespace/>uploadDoc',
 						        fieldStrings: fieldStrings,
 								rules: rules,
 								showAllMessages: true,
@@ -195,7 +195,7 @@
 									    ).render();
 						});
 						
-						 var url = '<%=actionUpload.toString() %>';
+						 var url = '<%=uploadDocumentURL.toString() %>';
 							
 						
 						if(validator.hasErrors()){
@@ -223,7 +223,7 @@
 								
 								Y.io.request(url, {
 									method: 'POST',
-									form: { id: '<portlet:namespace />inputForm' },
+									form: { id: '<portlet:namespace />uploadDoc' },
 									dataType: 'json',
 									on:{
 									success: function(event, id, ob){
