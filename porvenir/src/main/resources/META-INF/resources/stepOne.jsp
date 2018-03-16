@@ -56,7 +56,7 @@
 	String extensionCu = fileEntryCU.getExtension();
 	String titleCH = fileEntryCU.getTitle();
 	//Obtengo el directorio en el que están los archivos de la matriz
-	DLFolder dir = DLFolderLocalServiceUtil.getFolder(themeDisplay.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docsUpload");
+	DLFolder dir = DLFolderLocalServiceUtil.getFolder(themeD.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docsUpload");
 
 	//Se obtienen los ficheros del directorio
 	List<DLFileEntry> dLFileEntrys = DLFileEntryLocalServiceUtil.getFileEntries(dir.getGroupId(), dir.getFolderId());
