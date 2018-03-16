@@ -12,7 +12,7 @@ public enum ServiceConsumer {
 
 	private static final Log LOGGER = LogFactoryUtil.getLog(ServiceConsumer.class);
 
-	public ConsultaAfiliadosResponse consumeConsultarProductoCompania(String idCompania, String idProducto) throws Exception  {
+	public ConsultaAfiliadosResponse consultarAfiliados(String idCompania, String idProducto) throws Exception  {
 		LOGGER.debug("invoque method consumeConsultarProductoCompania()");
 		try {
 	

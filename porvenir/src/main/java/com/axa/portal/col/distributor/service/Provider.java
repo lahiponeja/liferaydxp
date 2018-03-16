@@ -19,7 +19,7 @@ public enum Provider {
 	
 	private Log logger = LogFactoryUtil.getLog(Provider.class);
 	
-	private ServicioWebCesantiasAfiliados portCartera;
+	private ServicioWebCesantiasAfiliados portCesantias;
 	
 	private Enviroment enviroment;
 	
@@ -33,10 +33,10 @@ public enum Provider {
 	}
 	
 	public ServicioWebCesantiasAfiliados getPortCartera() throws MalformedURLException {
-		if (portCartera == null){
+		if (portCesantias == null){
 			setPortPolicy();
 		}
-		return this.portCartera;
+		return this.portCesantias;
 	}
 	
 
@@ -44,7 +44,7 @@ public enum Provider {
 		logger.info("url cartera " + enviroment.getServiceURLCartera());
 		URL wsdlURL = new URL(enviroment.getServiceURLCartera()); 
 		ServicioWebCesantiasAfiliadosService serviceInstance = new ServicioWebCesantiasAfiliadosService(wsdlURL, SERVICE_NAME);
-		this.portCartera = serviceInstance.getServicioWebCesantiasAfiliadosPort();
+		this.portCesantias = serviceInstance.getServicioWebCesantiasAfiliadosPort();
 	}
 	
 }
