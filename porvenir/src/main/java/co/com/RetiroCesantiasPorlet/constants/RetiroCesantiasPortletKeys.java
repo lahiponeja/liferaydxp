@@ -8,6 +8,7 @@ import java.util.Locale;
  * @author PaulaRestrepo
  */
 public class RetiroCesantiasPortletKeys implements com.liferay.portal.kernel.util.Constants {
+	
 	public static final String Caption="RetiroCesantiasPorlet.caption";
 	public static final String medioPago = "RetiroCesantiasPorlet.medioPago";
 	public static final String ingreso = "RetiroCesantiasPorlet.ingreso";

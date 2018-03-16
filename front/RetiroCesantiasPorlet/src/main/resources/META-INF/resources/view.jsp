@@ -1,24 +1,25 @@
 <%@ include file="/init.jsp" %>
+<%@ page import="co.com.RetiroCesantiasPorlet.constants.RetiroCesantiasPortletKeys"%>
 
-<!-- <p>
-	<b><liferay-ui:message key="retiromasivocesantiasportlet_Retiromasivocesantiasportletmvcportlet.caption"/></b>
-</p>-->
+<p>
+	<b><liferay-ui:message key="RetiroCesantiasPorlet.caption"/></b>
+</p>
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="tabbable" id="tabs-94785">
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
-						<a class="nav-link active" href="#panel-1" data-toggle="tab">Elegir medio de pago</a>
+						<a class="nav-link active" href="#panel-1" data-toggle="tab"><%=RetiroCesantiasPortletKeys.medioPago %></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#panel-2" data-toggle="tab">Ingreso de Datos</a>
+						<a class="nav-link" href="#panel-2" data-toggle="tab"><%=RetiroCesantiasPortletKeys.ingreso %></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#panel-3" data-toggle="tab">Revisión de Datos</a>
+						<a class="nav-link" href="#panel-3" data-toggle="tab"><%=RetiroCesantiasPortletKeys.revision %></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#panel-4" data-toggle="tab">Fin del servicio</a>
+						<a class="nav-link" href="#panel-4" data-toggle="tab"><%=RetiroCesantiasPortletKeys.fin %></a>
 					</li>
 				</ul>
 				<div class="tab-content">

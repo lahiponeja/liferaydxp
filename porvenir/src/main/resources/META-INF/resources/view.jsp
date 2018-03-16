@@ -10,16 +10,16 @@
 			<div class="tabbable" id="tabs-94785">
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
-						<a class="nav-link active" href="#panel-1" data-toggle="tab"><%=RetiroCesantiasPortletKeys.medioPago %></a>
+						<a class="nav-link active" href="#panel-1" data-toggle="tab"><liferay-ui:message key="RetiroCesantiasPorlet.medioPago"/></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#panel-2" data-toggle="tab"><%=RetiroCesantiasPortletKeys.ingreso %></a>
+						<a class="nav-link" href="#panel-2" data-toggle="tab"><liferay-ui:message key="RetiroCesantiasPorlet.ingreso"/></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#panel-3" data-toggle="tab"><%=RetiroCesantiasPortletKeys.revision %></a>
+						<a class="nav-link" href="#panel-3" data-toggle="tab"><liferay-ui:message key="RetiroCesantiasPorlet.revision"/></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#panel-4" data-toggle="tab"><%=RetiroCesantiasPortletKeys.fin %></a>
+						<a class="nav-link" href="#panel-4" data-toggle="tab"><liferay-ui:message key="RetiroCesantiasPorlet.fin"/></a>
 					</li>
 				</ul>
 				<div class="tab-content">
