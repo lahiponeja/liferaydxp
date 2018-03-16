@@ -22,7 +22,6 @@
 <portlet:actionURL name="uploadDocument" var="uploadDocumentURL"></portlet:actionURL>
 
 <%
-
 	ThemeDisplay themeD = null;
 	if (request != null) {
 		themeD = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
@@ -30,11 +29,7 @@
 	Long groupId = themeD.getCompany().getGroup().getGroupId();
 	String fileTitleCh = RetiroCesantiasPortletKeys.tituloArchivoCheque;
 	String fileTitleCU = RetiroCesantiasPortletKeys.tituloArchivoCuenta;
-	long folderIdCu = 0;
-	long folderIdCh = 0;
-	String nameCu = "";
-	String nameCh = "";
-	try {
+
 	List<DLFolder> listFolder = DLFolderLocalServiceUtil.getDLFolders(-1, -1);
 	Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
 	DLFolder folderDL = folders.get("docs");
@@ -46,32 +41,13 @@
 	fileEntryCH = fileEntryCH.toEscapedModel();
 
 	long fileEntryIdCh = fileEntryCH.getFileEntryId();
-	folderIdCh = fileEntryCH.getFolderId();
-	nameCh = fileEntryCH.getName();
+	long folderIdCh = fileEntryCH.getFolderId();
+	String nameCh = fileEntryCH.getName();
 	String extensionCh = fileEntryCH.getExtension();
 	String titleCh = fileEntryCH.getTitle();
-	
-	
-	
-		DLFileEntry fileEntryCU = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil
-				.getDLFileEntry(31724);
-		fileEntryCU = fileEntryCU.toEscapedModel();
 
-<<<<<<< HEAD
 	DLFileEntry fileEntryCU = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
-=======
-		long fileEntryIdCu = fileEntryCU.getFileEntryId();
-		folderIdCu = fileEntryCU.getFolderId();
-		nameCu = fileEntryCU.getName();
-		String extensionCu = fileEntryCU.getExtension();
-		String titleCH = fileEntryCU.getTitle();
-	}catch(Exception e){
-			
-	}
-	
->>>>>>> branch 'DESA' of http://200.119.44.98:3000/git/demo_retiro_porvenir.git
 
-<<<<<<< HEAD
 	fileEntryCU = fileEntryCU.toEscapedModel();
 
 	long fileEntryIdCu = fileEntryCU.getFileEntryId();
@@ -104,9 +80,6 @@
 	
 
  
-=======
-	
->>>>>>> branch 'DESA' of http://200.119.44.98:3000/git/demo_retiro_porvenir.git
 %>
 
 <portlet:resourceURL var="resourceURL" />
@@ -150,7 +123,7 @@
 			</div>
 			<div class="checkbox">
 
-				<label> <aui:input id="checkInput" id="checkInput" name="checkInput" type="checkbox"> <liferay-ui:message	key="RetiroCesantiasPorlet.adjunte" /></aui:input>
+				<label> <aui:input id="checkInput" name="checkInput" type="checkbox"> <liferay-ui:message	key="RetiroCesantiasPorlet.adjunte" /></aui:input>
 				</label>
 			</div>
 			<aui:button type="submit" class="btn btn-primary" id="btnUploadFile" name="btnUploadFile" value="RetiroCesantiasPorlet.continuar">
@@ -175,7 +148,7 @@
 			  'aui-form-validator',
 			  function(Y) {
 				  var rules = {
-						  <portlet:namespace/>uploadFile: {
+						  <portlet:namespace/>inputFile: {
 						        acceptFiles: 'xls, xlsx',
 						        required: true
 						      },
@@ -185,7 +158,7 @@
 						  };
 
 						var fieldStrings = {
-								<portlet:namespace/>uploadFile: {
+								<portlet:namespace/>inputFile: {
 								acceptFiles: 'El tipo de archivo requerido es excel',
 						        required: 'El archivo es requerido.'
 						      	},
@@ -198,7 +171,7 @@
 			   
 						
 						var validator = new Y.FormValidator({
-							  boundingBox: '#<portlet:namespace/>uploadFile',
+							  boundingBox: '#<portlet:namespace/>inputForm',
 						        fieldStrings: fieldStrings,
 								rules: rules,
 								showAllMessages: true,
@@ -250,7 +223,7 @@
 								
 								Y.io.request(url, {
 									method: 'POST',
-									form: { id: '<portlet:namespace />uploadFile' },
+									form: { id: '<portlet:namespace />inputForm' },
 									dataType: 'json',
 									on:{
 									success: function(event, id, ob){
@@ -274,8 +247,16 @@
 										}
 									}
 								});
-						}
-				  }
+								
+								
+							}
+						
+						
+					
+						
+						
+
+			  }
 			);
 	
 
