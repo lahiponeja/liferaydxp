@@ -22,6 +22,10 @@
 <portlet:defineObjects />
 
 
+<portlet:actionURL  name="uploadDocument" var="actionUpload">
+ <portlet:param name="serverParam" value="<%=ControlerPortletKeys.UploadFile %>"/>
+</portlet:actionURL>
+
 <portlet:resourceURL var="formURL">
     <portlet:param name="serverParam" value="<%=ControlerPortletKeys.UploadFile %>"/>
 </portlet:resourceURL>
@@ -162,16 +166,53 @@
 							  boundingBox: '#<portlet:namespace/>inputForm',
 						        fieldStrings: fieldStrings,
 								rules: rules,
-								showAllMessages: true
+								showAllMessages: true,
+								new Y.ProgressBar(
+									      {
+									        boundingBox: '#<portlet:namespace/>formProgressBar',
+									        label: '40%',
+									        max: 100,
+									        min: 0,
+									        on: {
+									          complete: function(e) {
+									            this.set('label', 'Complete!');
+									          },
+									          valueChange: function(e) {
+									            this.set('label', e.newVal + '%');
+									          }
+									        },
+									        value: 40,
+									        width: 700
+									      }
+									    ).render();
 						});
 						
-						 var url = '<%=formURL.toString() %>';
+						 var url = '<%=actionUpload.toString() %>';
 							
 						
 						if(validator.hasErrors()){
 							alert("hello");
 							// event.preventDefault();
 							}else{
+								new Y.ProgressBar(
+									      {
+									        boundingBox: '#<portlet:namespace/>formProgressBar',
+									        label: '40%',
+									        max: 100,
+									        min: 0,
+									        on: {
+									          complete: function(e) {
+									            this.set('label', 'Complete!');
+									          },
+									          valueChange: function(e) {
+									            this.set('label', e.newVal + '%');
+									          }
+									        },
+									        value: 40,
+									        width: 700
+									      }
+									    ).render();
+								
 								Y.io.request(url, {
 									method: 'POST',
 									form: { id: '<portlet:namespace />inputForm' },
