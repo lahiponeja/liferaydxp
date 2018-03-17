@@ -19,8 +19,9 @@ lib/poi-ooxml-schemas.jar,\
 lib/poi-excelant.jar,\
 lib/poi-scratchpad.jar,\
 lib/xmlbeans.jar,\
-lib/curvesapi.jar
-
+lib/curvesapi.jar,\
+lib/commons-codec.jar,\
+lib/junit.jar
 	
 -includeresource:\
 lib/commons-collections.jar=commons-collections4-4.1.jar,\
@@ -33,8 +34,9 @@ lib/poi-ooxml-schemas.jar=poi-ooxml-schemas-3.17.jar,\
 lib/poi-excelant.jar=poi-excelant-3.17.jar,\
 lib/poi-scratchpad.jar=poi-scratchpad-3.17.jar,\
 lib/xmlbeans.jar=xmlbeans-2.6.0.jar,\
-lib/curvesapi.jar=curvesapi-1.03.jar
-
+lib/curvesapi.jar=curvesapi-1.03.jar,\
+lib/commons-codec.jar=commons-codec-1.4.jar,\
+lib/junit.jar=junit-4.4.jar
 
 Private-Package: \
 org.apache.poi.hssf.usermodel,\
@@ -44,12 +46,18 @@ org.apache.poi.ddf,\
 Import-Package: \
 	!com.sun.javadoc,\
 	!com.sun.*,\
+	!junit.*,\
     !junit.framework,\
     !org.apache.xmlbeans.*,\
     !org.apache.poi.hsmf,\
     !org.apache.poi.hslf.extractor,\
     !org.apache.poi.hpbf.extractor,\
     !org.apache.poi.*,\
+    !org.apache.crimson.jaxp,\
+    !org.apache.jcp.xml.dsig.internal.dom,\
+    !org.apache.xml.*,\
+    !org.bouncycastle.*,\
+    !org.junit.*,\
     !org.openxmlformats.schemas.*,\
     !schemasMicrosoftComOfficeExcel,\
     !schemasMicrosoftComOfficeOffice,\
