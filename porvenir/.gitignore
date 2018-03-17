@@ -1,3 +1,6 @@
 .gradle/
 build/
 target/
+/pom.xml.bk
+/bnd.Bk
+/build.gradle.bk
