@@ -9,7 +9,7 @@ import java.util.Locale;
  */
 public class RetiroCesantiasPortletKeys implements com.liferay.portal.kernel.util.Constants {
 	
-	public static final String Caption="RetiroCesantiasPorlet.caption";
+	public static final String Caption="Retiro Masivo de Cesantias Portlet";
 	public static final String medioPago = "RetiroCesantiasPorlet.medioPago";
 	public static final String ingreso = "RetiroCesantiasPorlet.ingreso";
 	public static final String revision = "RetiroCesantiasPorlet.revision";
