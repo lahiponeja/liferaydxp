@@ -36,7 +36,7 @@ import co.com.general.porvenir.poi.ApachePOIExcelRead;
 /**
  * @author Manuel
  */
-@Component(immediate = true, property = { "com.liferay.portlet.display-category=category.Porvenir",
+@Component(immediate = true, property = { "com.liferay.portlet.display-category=Porvenir",
 		"com.liferay.portlet.instanceable=true", "javax.portlet.display-name=" + RetiroCesantiasPortletKeys.Caption,
 		"javax.portlet.init-param.template-path=/", "javax.portlet.init-param.view-template=/view.jsp",
 		"javax.portlet.name=" + ControlerPortletKeys.Controler, "javax.portlet.resource-bundle=content.Language",
