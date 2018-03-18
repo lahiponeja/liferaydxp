@@ -3,6 +3,10 @@ package com.axa.portal.col.distributor.service;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
+import java.util.List;
+
+import co.com.general.porvenir.dto.Afiliado;
+import co.com.porvenir.ws.AfiliadoRequest;
 import co.com.porvenir.ws.ConsultaAfiliadosResponse;
 import co.com.porvenir.ws.EmpleadorRequest;
 
@@ -12,16 +16,22 @@ public enum ServiceConsumer {
 
 	private static final Log LOGGER = LogFactoryUtil.getLog(ServiceConsumer.class);
 
-	public ConsultaAfiliadosResponse consultarAfiliados(String idCompania, String idProducto) throws Exception  {
+	public ConsultaAfiliadosResponse consultarAfiliados(List<Afiliado> afiliados) throws Exception  {
 		LOGGER.debug("invoque method consumeConsultarProductoCompania()");
 		try {
 	
+			EmpleadorRequest request = new EmpleadorRequest();
+			request.setId("1");
 			
+			for (Afiliado afiliado : afiliados) {
+				AfiliadoRequest afiliadoRequest = new AfiliadoRequest(); 
+				afiliadoRequest.setCantidadRetiro(afiliado.getMontoRetiro());
+				afiliadoRequest.setId(afiliado.getIdAfiliado());
+				request.getAfiliados().add(afiliadoRequest);
+			}
 			
-			EmpleadorRequest _consultarAfiliados_arg0 = new EmpleadorRequest();
-			_consultarAfiliados_arg0.setId(idCompania);
 			ConsultaAfiliadosResponse consultarProductoCompaniaRespTYPE = Provider.INSTANCE.getPortCartera()
-					.consultarAfiliados(_consultarAfiliados_arg0);
+					.consultarAfiliados(request);
 			
 			return consultarProductoCompaniaRespTYPE;
 		} catch (Exception e) {
