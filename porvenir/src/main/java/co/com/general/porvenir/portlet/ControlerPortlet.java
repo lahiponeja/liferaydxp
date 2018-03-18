@@ -56,7 +56,7 @@ public class ControlerPortlet extends MVCPortlet {
 	}
 
 	@ProcessAction(name = "uploadDocument")
-	public void uploadDocument(ActionRequest actionRequest, ActionResponse actionResponse) {
+	public void uploadDocument(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
 
 		ThemeDisplay themeD = null;
 		if (actionRequest != null) {
@@ -85,6 +85,8 @@ public class ControlerPortlet extends MVCPortlet {
 				
 				ApachePOIExcelRead.readExcel(file);
 				
+				//redirect a la pagina 2
+				actionResponse.setRenderParameter("jspPage", "/META-INF/resources/stepTwo.jsp");
 			} catch (PortalException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
