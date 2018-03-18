@@ -147,14 +147,15 @@
 	AUI().use(
 			  'aui-form-validator',
 			  function(Y) {
+				  /* 			  }
 				  
 				  var DEFAULTS_FORM_VALIDATOR = Y.config.FormValidator;
 				  Y.mix(
                              DEFAULTS_FORM_VALIDATOR.RULES,
                              {
-                             customRuleForFile:function (val, fieldNode, ruleValue) {
+                             customRuleForFile:function (value, fieldNode, ruleValue) {
                                var result = false;
-                               var minsize=1000; // min 1kb
+                               var minsize=15; // min 1kb
                                var maxsize=20000; 
 			            		if((value>minsize)&&(value<=maxsize)){
                                    result = true;
@@ -171,18 +172,18 @@
                              },
                              true
                  );
-                  
+				  */          
 				  var rules = {
 						  <portlet:namespace/>uploadFile: {
 						        acceptFiles: 'xls, xlsx',
-						        customRuleForFile: true,
+						        //customRuleForFile: <portlet:namespace/>uploadFile.size,
 						        required: true
 						      },
 						  <portlet:namespace/>checkInput: {
 							    required: true
 							}
 						  };
-
+ 
 						var fieldStrings = {
 								<portlet:namespace/>uploadFile: {
 								acceptFiles: 'El tipo de archivo requerido es excel',
@@ -210,24 +211,6 @@
 							alert("hello");
 							// event.preventDefault();
 							}else{
-								new Y.ProgressBar(
-									      {
-									        boundingBox: '#<portlet:namespace/>formProgressBar',
-									        label: '40%',
-									        max: 100,
-									        min: 0,
-									        on: {
-									          complete: function(e) {
-									            this.set('label', 'Complete!');
-									          },
-									          valueChange: function(e) {
-									            this.set('label', e.newVal + '%');
-									          }
-									        },
-									        value: 40,
-									        width: 700
-									      }
-									    ).render();
 								
 								Y.io.request(url, {
 									method: 'POST',
@@ -269,7 +252,7 @@
 	
 
 	
-	AUI().use('aui-progressbar', function(A) {			
+	AUI().use('aui-progressbar', function(y) {			
 		new Y.ProgressBar(
 			      {
 			        boundingBox: '#<portlet:namespace/>id="formProgressBar"',
