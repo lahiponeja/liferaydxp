@@ -1,0 +1,26 @@
+pipeline 
+{
+    agent any
+
+    stages 
+    {
+        stage('Build') 
+        {
+            steps 
+            {
+            	echo 'Inicio: Construyendo web service'
+            	sh 'cd web-service;mvn compile'
+                echo 'Fin   : Construyendo web service'
+            }
+        }
+        stage('Test') 
+        {
+            steps 
+            {
+            	echo 'Inicio: Probando web service'
+            	sh 'cd web-service;mvn test'
+                echo 'Fin   : Probando web service'
+            }
+        }        
+    }
+}
