@@ -35,48 +35,57 @@
 	DLFolder folderDL = folders.get("docs");
 	//DLFolder dlFolder = DLFolderLocalServiceUtil.getFolder(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docs");
 	long folder = 44831;
+	long folderIdCh = 0;
+	long folderIdCu = 0;
+	String nameCh = ""; 
+	String nameCu = "";
+	try {
+		DLFileEntry fileEntryCH = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
 
-	DLFileEntry fileEntryCH = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
+		fileEntryCH = fileEntryCH.toEscapedModel();
 
-	fileEntryCH = fileEntryCH.toEscapedModel();
+		long fileEntryIdCh = fileEntryCH.getFileEntryId();
+		folderIdCh = fileEntryCH.getFolderId();
+		nameCh = fileEntryCH.getName();
+		String extensionCh = fileEntryCH.getExtension();
+		String titleCh = fileEntryCH.getTitle();
 
-	long fileEntryIdCh = fileEntryCH.getFileEntryId();
-	long folderIdCh = fileEntryCH.getFolderId();
-	String nameCh = fileEntryCH.getName();
-	String extensionCh = fileEntryCH.getExtension();
-	String titleCh = fileEntryCH.getTitle();
+		DLFileEntry fileEntryCU = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
 
-	DLFileEntry fileEntryCU = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
+		fileEntryCU = fileEntryCU.toEscapedModel();
 
-	fileEntryCU = fileEntryCU.toEscapedModel();
+		long fileEntryIdCu = fileEntryCU.getFileEntryId();
+		folderIdCu = fileEntryCU.getFolderId();
+		nameCu = fileEntryCU.getName();
+		String extensionCu = fileEntryCU.getExtension();
+		String titleCH = fileEntryCU.getTitle();
+		//Obtengo el directorio en el que están los archivos de la matriz
+		DLFolder dir = DLFolderLocalServiceUtil.getFolder(themeD.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docsUpload");
 
-	long fileEntryIdCu = fileEntryCU.getFileEntryId();
-	long folderIdCu = fileEntryCU.getFolderId();
-	String nameCu = fileEntryCU.getName();
-	String extensionCu = fileEntryCU.getExtension();
-	String titleCH = fileEntryCU.getTitle();
-	//Obtengo el directorio en el que están los archivos de la matriz
-	DLFolder dir = DLFolderLocalServiceUtil.getFolder(themeD.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docsUpload");
-
-	//Se obtienen los ficheros del directorio
-	List<DLFileEntry> dLFileEntrys = DLFileEntryLocalServiceUtil.getFileEntries(dir.getGroupId(), dir.getFolderId());
-	
-	List<DLFileEntry> dLFileEntrysAux=new ArrayList<DLFileEntry>(dLFileEntrys);
-	
-	Collections.sort(dLFileEntrysAux, new Comparator<DLFileEntry>(){
-
+		//Se obtienen los ficheros del directorio
+		List<DLFileEntry> dLFileEntrys = DLFileEntryLocalServiceUtil.getFileEntries(dir.getGroupId(), dir.getFolderId());
 		
-		public int compare(DLFileEntry o1, DLFileEntry o2) {
-			return o1.getTitle().compareTo(o2.getTitle());
-		}
-	});
-	
-	for (DLFileEntry file : dLFileEntrysAux) {
-		if(file.getExtension().equals("xlsx")){
-			System.out.println("nombre: " + file.getTitle());
+		List<DLFileEntry> dLFileEntrysAux=new ArrayList<DLFileEntry>(dLFileEntrys);
+		
+		Collections.sort(dLFileEntrysAux, new Comparator<DLFileEntry>(){
+
 			
+			public int compare(DLFileEntry o1, DLFileEntry o2) {
+				return o1.getTitle().compareTo(o2.getTitle());
+			}
+		});
+		
+		for (DLFileEntry file : dLFileEntrysAux) {
+			if(file.getExtension().equals("xlsx")){
+				System.out.println("nombre: " + file.getTitle());
+				
+			}
 		}
+	}catch(Exception e)
+	{
+		
 	}
+	
 	
 
  

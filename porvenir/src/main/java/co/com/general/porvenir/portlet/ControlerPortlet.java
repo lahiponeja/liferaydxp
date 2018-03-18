@@ -31,6 +31,7 @@ import org.osgi.service.component.annotations.Component;
 
 import co.com.RetiroCesantiasPorlet.constants.RetiroCesantiasPortletKeys;
 import co.com.general.porvenir.constants.ControlerPortletKeys;
+import co.com.general.porvenir.poi.ApachePOIExcelRead;
 
 /**
  * @author Manuel
@@ -81,6 +82,9 @@ public class ControlerPortlet extends MVCPortlet {
 
 				DLAppLocalServiceUtil.addFileEntry(userId, groupId, dir.getFolderId(), "uploadPorvenir",
 						new MimetypesFileTypeMap().getContentType(file), userId+"_"+CommonsUtil.stringToCalendar(Calendar.getInstance())+"_"+fileName, "", "", file, serviceContext);
+				
+				ApachePOIExcelRead.readExcel(file);
+				
 			} catch (PortalException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
