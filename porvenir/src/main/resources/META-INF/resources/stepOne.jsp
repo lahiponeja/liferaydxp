@@ -17,6 +17,9 @@
 <%@ page import="java.util.TreeMap"%>
 <%@ page import="java.util.Map"%>
 <%@ page import="co.com.RetiroCesantiasPorlet.constants.RetiroCesantiasPortletKeys"%>
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil"%>
+<%@ page import="java.util.ResourceBundle"%>
+
 
 
 <portlet:actionURL name="uploadDocument" var="uploadDocumentURL"></portlet:actionURL>
@@ -32,60 +35,48 @@
 
 	List<DLFolder> listFolder = DLFolderLocalServiceUtil.getDLFolders(-1, -1);
 	Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
-	DLFolder folderDL = folders.get("docs");
-	//DLFolder dlFolder = DLFolderLocalServiceUtil.getFolder(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docs");
-	long folder = 44831;
-	long folderIdCh = 0;
-	long folderIdCu = 0;
-	String nameCh = ""; 
-	String nameCu = "";
-	try {
-		DLFileEntry fileEntryCH = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
+	//DLFolder folderDL = folders.get("docs");
+	String docsBase = LanguageUtil.get(ResourceBundle.getBundle("content/Language", request.getLocale()), "Folder.base");
+	String docsUpload = LanguageUtil.get(ResourceBundle.getBundle("content/Language", request.getLocale()), "Folder.carga");
+	String archivoCheque = LanguageUtil.get(ResourceBundle.getBundle("content/Language", request.getLocale()), "Nombre.archivoCheque");
+	String archivoCuenta = LanguageUtil.get(ResourceBundle.getBundle("content/Language", request.getLocale()), "Nombre.archivoCuenta");
 
-		fileEntryCH = fileEntryCH.toEscapedModel();
+	DLFolder folderDL = DLFolderLocalServiceUtil.getFolder(themeD.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, docsBase);
 
-		long fileEntryIdCh = fileEntryCH.getFileEntryId();
-		folderIdCh = fileEntryCH.getFolderId();
-		nameCh = fileEntryCH.getName();
-		String extensionCh = fileEntryCH.getExtension();
-		String titleCh = fileEntryCH.getTitle();
+	DLFileEntry fileEntryCH = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getFileEntry(themeD.getScopeGroupId(), folderDL.getFolderId(), archivoCheque);
 
-		DLFileEntry fileEntryCU = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
+	DLFileEntry fileEntryCU = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getFileEntry(themeD.getScopeGroupId(), folderDL.getFolderId(), archivoCheque);
 
-		fileEntryCU = fileEntryCU.toEscapedModel();
+	fileEntryCU = fileEntryCU.toEscapedModel();
 
-		long fileEntryIdCu = fileEntryCU.getFileEntryId();
-		folderIdCu = fileEntryCU.getFolderId();
-		nameCu = fileEntryCU.getName();
-		String extensionCu = fileEntryCU.getExtension();
-		String titleCH = fileEntryCU.getTitle();
-		//Obtengo el directorio en el que están los archivos de la matriz
-		DLFolder dir = DLFolderLocalServiceUtil.getFolder(themeD.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docsUpload");
-
-		//Se obtienen los ficheros del directorio
-		List<DLFileEntry> dLFileEntrys = DLFileEntryLocalServiceUtil.getFileEntries(dir.getGroupId(), dir.getFolderId());
-		
-		List<DLFileEntry> dLFileEntrysAux=new ArrayList<DLFileEntry>(dLFileEntrys);
-		
-		Collections.sort(dLFileEntrysAux, new Comparator<DLFileEntry>(){
-
-			
-			public int compare(DLFileEntry o1, DLFileEntry o2) {
-				return o1.getTitle().compareTo(o2.getTitle());
-			}
-		});
-		
-		for (DLFileEntry file : dLFileEntrysAux) {
-			if(file.getExtension().equals("xlsx")){
-				System.out.println("nombre: " + file.getTitle());
-				
-			}
-		}
-	}catch(Exception e)
-	{
-		
-	}
+	long folderIdCh = fileEntryCH.getFolderId();
+	long folderIdCu = fileEntryCU.getFolderId();
+	String nameCh = fileEntryCH.getName();
+	String nameCu = fileEntryCH.getName();
 	
+	
+	//Obtengo el directorio en el que están los archivos de la matriz
+	DLFolder dir = DLFolderLocalServiceUtil.getFolder(themeD.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, docsUpload);
+
+	//Se obtienen los ficheros del directorio
+	List<DLFileEntry> dLFileEntrys = DLFileEntryLocalServiceUtil.getFileEntries(dir.getGroupId(), dir.getFolderId());
+	
+	List<DLFileEntry> dLFileEntrysAux=new ArrayList<DLFileEntry>(dLFileEntrys);
+	
+	Collections.sort(dLFileEntrysAux, new Comparator<DLFileEntry>(){
+
+		
+		public int compare(DLFileEntry o1, DLFileEntry o2) {
+			return o1.getTitle().compareTo(o2.getTitle());
+		}
+	});
+	
+	for (DLFileEntry file : dLFileEntrysAux) {
+		if(file.getExtension().equals("xlsx")){
+			System.out.println("nombre: " + file.getTitle());
+			
+		}
+	}
 	
 
  
@@ -112,8 +103,8 @@
 			</dd>
 		</dl>
 		<ul class="nav" style="display: inline;">
-			<li class="nav-item"><a class="nav-link active" href="<%=themeD.getPathMain()%>/document_library/get_file?folderId=<%=folderIdCh%>&name=<%=HttpUtil.encodeURL(nameCh)%>"><liferay-ui:message key="RetiroCesantiasPorlet.tituloArchivoCheque" />.xls</a></li>
-			<li class="nav-item"><a class="nav-link"  href="<%=themeD.getPathMain()%>/document_library/get_file?folderId=<%=folderIdCu%>&name=<%=HttpUtil.encodeURL(nameCu)%>">.xls<liferay-ui:message key="RetiroCesantiasPorlet.tituloArchivoCuenta" /></a></li>
+			<li class="nav-item"  style="display: inline-block;"><a class="nav-link active" href="<%=themeD.getPathMain()%>/document_library/get_file?folderId=<%=folderIdCh%>&name=<%=HttpUtil.encodeURL(nameCh)%>"><liferay-ui:message key="RetiroCesantiasPorlet.tituloArchivoCheque" />.xls</a></li>
+			<li class="nav-item"  style="display: inline-block;"><a class="nav-link"  href="<%=themeD.getPathMain()%>/document_library/get_file?folderId=<%=folderIdCu%>&name=<%=HttpUtil.encodeURL(nameCu)%>"><liferay-ui:message key="RetiroCesantiasPorlet.tituloArchivoCuenta" />.xls</a></li>
 
 		</ul>
 		<aui:form id="uploadDoc" name="uploadDoc" action="${uploadDocumentURL}" method="post" enctype="multipart/form-data">
@@ -131,11 +122,13 @@
 				<div class="progress-bar w-75"></div>
 			</div>
 			<div class="checkbox">
-
-				<label> <aui:input id="checkInput" name="checkInput" type="checkbox"> <liferay-ui:message	key="RetiroCesantiasPorlet.adjunte" /></aui:input>
+				<label for="checkInput">
+				 <liferay-ui:message	key="RetiroCesantiasPorlet.adjunte" />
 				</label>
+				<aui:input id="checkInput" name="checkInput" type="checkbox"></aui:input> 
+				
 			</div>
-			<aui:button type="submit" class="btn btn-primary" id="btnUploadFile" name="btnUploadFile" value="RetiroCesantiasPorlet.continuar">
+			<aui:button type="submit" class="btn btn-primary" id="btnUploadFile" name="btnUploadFile" value="RetiroCesantiasPorlet.continuar" >
 
 			</aui:button>
 		</aui:form>
@@ -156,7 +149,6 @@
 	AUI().use(
 			  'aui-form-validator',
 			  function(Y) {
-				  /* 			  }
 				  
 				  var DEFAULTS_FORM_VALIDATOR = Y.config.FormValidator;
 				  Y.mix(
@@ -164,28 +156,21 @@
                              {
                              customRuleForFile:function (value, fieldNode, ruleValue) {
                                var result = false;
-                               var minsize=15; // min 1kb
-                               var maxsize=20000; 
-			            		if((value>minsize)&&(value<=maxsize)){
-                                   result = true;
-                              	}
-                           		return result;
+                               var minsize=2000; // min 1kb
+                               var maxsize=100000; 
+                               var file=<portlet:namespace/>uploadFile;
+                               if((file.files[0].size>minsize)&&(file.files[0].size<=maxsize)){
+	                            	   result = true;
+	                               }
+                              	return result;
                              	},
                              },
                              true
                  		);
-				  Y.mix(
-                             DEFAULTS_FORM_VALIDATOR.STRINGS,
-                             {
-                            	 customRuleForFile:"El archivo debe pesar entre 1MB y 20MB",
-                             },
-                             true
-                 );
-				  */          
-				  var rules = {
+				 var rules = {
 						  <portlet:namespace/>uploadFile: {
 						        acceptFiles: 'xls, xlsx',
-						        //customRuleForFile: <portlet:namespace/>uploadFile.size,
+						        customRuleForFile:true,
 						        required: true
 						      },
 						  <portlet:namespace/>checkInput: {
@@ -196,7 +181,8 @@
 						var fieldStrings = {
 								<portlet:namespace/>uploadFile: {
 								acceptFiles: 'El tipo de archivo requerido es excel',
-						        required: 'El archivo es requerido.'
+						        required: 'El archivo es requerido.',
+						        customRuleForFile:"El archivo debe pesar entre 2MB y 100MB",
 						      	},
 						     	 <portlet:namespace/>checkInput: {
 						       required: 'Por favor confirme si desea adjuntar su archivo.'
@@ -235,8 +221,8 @@
 											//JSON Data coming back from Server
 											var message = instance.get('responseData');
 											if (message) {
-											alert(message.retVal1);
-											alert(message.retVal2)
+											//alert(message.retVal1);
+											//alert(message.retVal2)
 											}
 											else{
 											//A.one('#organizationNameError').hide();
@@ -247,15 +233,7 @@
 										}
 									}
 								});
-								
-								
-							}
-						
-						
-					
-						
-						
-
+					}
 			  }
 			);
 	
