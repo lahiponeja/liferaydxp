@@ -96,6 +96,7 @@ public class ControlerPortlet extends MVCPortlet {
 						//LOGGER.error("Se ha presentado un error en el consumo del servicio", e);
 					}
 				}
+				System.out.println(afiliados.size());
 				actionRequest.setAttribute("afiliados", afiliados);
 				//redirect a la pagina 2
 				actionResponse.setRenderParameter("jspPage", "/META-INF/resources/stepTwo.jsp");

@@ -1,9 +1,14 @@
+<%@ include file="/init.jsp" %>
+<%@page import="java.util.ArrayList"%>
 <%@page language="java" contentType="text/html; charset=utf-8"%>
 <%@ include file="init.jsp"%>   
 <%@ page import="java.util.List"%>
 <%@ page import="co.com.general.porvenir.dto.Afiliado"%>
 <%
-	List<Afiliado> afiliados = (List<Afiliado>)renderRequest.getAttribute("afiliados");
+
+	List<Afiliado> afiliados = (List<Afiliado>)renderRequest.getAttribute("afiliados"); 
+	//List<Afiliado> afiliados =  new ArrayList();
+	System.out.println(afiliados.size());
 	if (afiliados != null && !afiliados.isEmpty())
 %>    
 <div class="row">
@@ -35,7 +40,7 @@
 										<tbody>
 										
 										<% for (int i=0; i< afiliados.size(); i++){ 
-											Afiliado afiliado = afiliados.get(i);
+											Afiliado afiliado = (Afiliado)afiliados.get(i);
 										%>
 												
 											<tr>

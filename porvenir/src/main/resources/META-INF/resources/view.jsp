@@ -27,7 +27,7 @@
 				<%@include file="stepOne.jsp"%>		
 				</div>
 				<div class="tab-pane" id="panel-2">
- 				<%@include file="stepTwo.jsp"%>				 
+<%--  				<%@include file="stepTwo.jsp"%>				  --%>
 				</div>
 				<div class="tab-pane" id="panel-3">
 				<%@include file="stepThree.jsp"%>	

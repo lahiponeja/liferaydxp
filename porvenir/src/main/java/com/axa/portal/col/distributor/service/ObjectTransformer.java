@@ -17,8 +17,8 @@ public class ObjectTransformer {
 			
 			Afiliado afiliado = new Afiliado();
 			afiliado.setIdAfiliado(afiliadoResponse.getId());
-			afiliado.setMontoRetiro(Integer.valueOf(String.valueOf(afiliadoResponse.getCantidadRetiro())));
-			afiliado.setSaldoCesantias(Integer.valueOf(String.valueOf(afiliadoResponse.getSaldoCesantias())));
+			afiliado.setMontoRetiro((double)afiliadoResponse.getCantidadRetiro());
+			afiliado.setSaldoCesantias((double)afiliadoResponse.getSaldoCesantias());
 			
 			for (Afiliado afiliadoE : afiliadosExcel) {
 				if (afiliado.getIdAfiliado().equals(afiliadoE.getIdAfiliado())){

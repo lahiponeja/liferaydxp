@@ -8,12 +8,30 @@ public class Afiliado {
 	
 	private String idAfiliado;
 	
-	private Integer montoRetiro;
+	private double montoRetiro;
 	
 	private String nombreAfiliado;
 	
 	//output servicio
-	private Integer saldoCesantias;
+	private double saldoCesantias;
+
+	
+
+	public double getMontoRetiro() {
+		return montoRetiro;
+	}
+
+	public void setMontoRetiro(double montoRetiro) {
+		this.montoRetiro = montoRetiro;
+	}
+
+	public double getSaldoCesantias() {
+		return saldoCesantias;
+	}
+
+	public void setSaldoCesantias(double saldoCesantias) {
+		this.saldoCesantias = saldoCesantias;
+	}
 
 	public String getIdEmpleador() {
 		return idEmpleador;
@@ -31,13 +49,7 @@ public class Afiliado {
 		this.idAfiliado = idAfiliado;
 	}
 
-	public Integer getMontoRetiro() {
-		return montoRetiro;
-	}
-
-	public void setMontoRetiro(Integer montoRetiro) {
-		this.montoRetiro = montoRetiro;
-	}
+	
 
 	public String getNombreAfiliado() {
 		return nombreAfiliado;
@@ -47,12 +59,6 @@ public class Afiliado {
 		this.nombreAfiliado = nombreAfiliado;
 	}
 
-	public Integer getSaldoCesantias() {
-		return saldoCesantias;
-	}
-
-	public void setSaldoCesantias(Integer saldoCesantias) {
-		this.saldoCesantias = saldoCesantias;
-	}
+	
 	
 }

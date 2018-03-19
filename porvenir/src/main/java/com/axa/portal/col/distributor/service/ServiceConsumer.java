@@ -25,7 +25,7 @@ public enum ServiceConsumer {
 			
 			for (Afiliado afiliado : afiliados) {
 				AfiliadoRequest afiliadoRequest = new AfiliadoRequest(); 
-				afiliadoRequest.setCantidadRetiro(afiliado.getMontoRetiro());
+				afiliadoRequest.setCantidadRetiro((long)afiliado.getMontoRetiro());
 				afiliadoRequest.setId(afiliado.getIdAfiliado());
 				request.getAfiliados().add(afiliadoRequest);
 			}
