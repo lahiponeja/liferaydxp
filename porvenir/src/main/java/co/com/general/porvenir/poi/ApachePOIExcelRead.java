@@ -70,7 +70,10 @@ public class ApachePOIExcelRead {
 	                        }
 	                    }
 	                }
-	                afiliados.add(afiliado);
+	                if (!"IdentificacionEmpleador".equals(afiliado.getNombreAfiliado())){
+	                	afiliados.add(afiliado);
+            		}
+	                
 	            }
 	            return afiliados;
 	        } catch (FileNotFoundException e) {
