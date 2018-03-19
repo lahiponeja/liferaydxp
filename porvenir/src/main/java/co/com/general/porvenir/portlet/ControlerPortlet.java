@@ -1,5 +1,6 @@
 package co.com.general.porvenir.portlet;
 
+import com.axa.portal.col.distributor.service.ObjectTransformer;
 import com.axa.portal.col.distributor.service.ServiceConsumer;
 import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
@@ -16,7 +17,9 @@ import com.portal.commons.util.CommonsUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.portlet.ActionRequest;
@@ -31,7 +34,9 @@ import org.osgi.service.component.annotations.Component;
 
 import co.com.RetiroCesantiasPorlet.constants.RetiroCesantiasPortletKeys;
 import co.com.general.porvenir.constants.ControlerPortletKeys;
+import co.com.general.porvenir.dto.Afiliado;
 import co.com.general.porvenir.poi.ApachePOIExcelRead;
+import co.com.porvenir.ws.ConsultaAfiliadosResponse;
 
 /**
  * @author Manuel
@@ -43,20 +48,16 @@ import co.com.general.porvenir.poi.ApachePOIExcelRead;
 		"javax.portlet.security-role-ref=power-user,user" }, service = Portlet.class)
 public class ControlerPortlet extends MVCPortlet {
 
+	
 	@Override
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
 			throws IOException, PortletException {
-		try {
-			ServiceConsumer.INSTANCE.consultarAfiliados("1", "2");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		super.doView(renderRequest, renderResponse);
 	}
 
 	@ProcessAction(name = "uploadDocument")
-	public void uploadDocument(ActionRequest actionRequest, ActionResponse actionResponse) {
+	public void uploadDocument(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
 
 		ThemeDisplay themeD = null;
 		if (actionRequest != null) {
@@ -83,8 +84,22 @@ public class ControlerPortlet extends MVCPortlet {
 				DLAppLocalServiceUtil.addFileEntry(userId, groupId, dir.getFolderId(), "uploadPorvenir",
 						new MimetypesFileTypeMap().getContentType(file), userId+"_"+CommonsUtil.stringToCalendar(Calendar.getInstance())+"_"+fileName, "", "", file, serviceContext);
 				
-				ApachePOIExcelRead.readExcel(file);
-				
+				//Lee los registros del excel (dto)
+				List<Afiliado> afiliadosExcel = ApachePOIExcelRead.readExcel(file);
+				//llama al servicio, (dto)
+				List<Afiliado> afiliados = new ArrayList<Afiliado>();
+				if (afiliadosExcel  != null && !afiliadosExcel.isEmpty()){
+					try {
+						ConsultaAfiliadosResponse consultaAfiliados =ServiceConsumer.INSTANCE.consultarAfiliados(afiliadosExcel);
+						afiliados = ObjectTransformer.convert(consultaAfiliados, afiliadosExcel);
+					} catch (Exception e) {
+						//LOGGER.error("Se ha presentado un error en el consumo del servicio", e);
+					}
+				}
+				System.out.println(afiliados.size());
+				actionRequest.setAttribute("afiliados", afiliados);
+				//redirect a la pagina 2
+				actionResponse.setRenderParameter("jspPage", "/META-INF/resources/stepTwo.jsp");
 			} catch (PortalException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -1,5 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ include file="/init.jsp" %>
+<%@page import="java.util.ArrayList"%>
+<%@page language="java" contentType="text/html; charset=utf-8"%>
+<%@ include file="init.jsp"%>   
+<%@ page import="java.util.List"%>
+<%@ page import="co.com.general.porvenir.dto.Afiliado"%>
+<%
+
+	List<Afiliado> afiliados = (List<Afiliado>)renderRequest.getAttribute("afiliados"); 
+	//List<Afiliado> afiliados =  new ArrayList();
+	System.out.println(afiliados.size());
+	if (afiliados != null && !afiliados.isEmpty())
+%>    
 <div class="row">
 								<div class="col-md-12">
 									<table class="table table-sm">
@@ -9,10 +20,13 @@
 													#
 												</th>
 												<th>
-													Identificación
+													IdentificaciÃ³n
 												</th>
 												<th>
 													Nombre
+												</th>
+												<th>
+													Saldo Retiro
 												</th>
 												<th>
 													Concepto de Retiro
@@ -24,15 +38,23 @@
 											</tr>
 										</thead>
 										<tbody>
+										
+										<% for (int i=0; i< afiliados.size(); i++){ 
+											Afiliado afiliado = (Afiliado)afiliados.get(i);
+										%>
+												
 											<tr>
 												<td>
 												<label><input type="checkbox" value=""></label>	
 												</td>
-												<td>
-													CC131231
+												<td> 
+													<%=afiliado.getIdAfiliado() %>
 												</td>
 												<td>
-													Lola Flores
+													<%=afiliado.getNombreAfiliado() %>
+												</td>
+												<td>
+													<%=afiliado.getSaldoCesantias() %>
 												</td>
 												<td>
 													<div class="dropdown">
@@ -40,7 +62,7 @@
 															Retiro
 														</button>
 														<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-															 <a class="dropdown-item disabled" href="#">Vivienda</a> <a class="dropdown-item" href="#">Educación</a> <a class="dropdown-item" href="#">Otro</a>
+															 <a class="dropdown-item disabled" href="#">Vivienda</a> <a class="dropdown-item" href="#">EducaciÃ³n</a> <a class="dropdown-item" href="#">Otro</a>
 														</div>
 													</div>
 												</td>
@@ -51,110 +73,7 @@
 												</td>
 												
 											</tr>
-											<tr class="table-active">
-												<td>
-												<label><input type="checkbox" value=""></label>	
-												</td>
-												<td>
-													CC131231
-												</td>
-												<td>
-													Lola Flores
-												</td>
-												<td>
-													<div class="dropdown">
-														<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-															Retiro
-														</button>
-														<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-															 <a class="dropdown-item disabled" href="#">Vivienda</a> <a class="dropdown-item" href="#">Educación</a> <a class="dropdown-item" href="#">Otro</a>
-														</div>
-													</div>
-												</td>
-												<td>
-												<a href="#">
-												  <span class="glyphicon glyphicon-trash"></span>
-												</a>
-												</td>
-											</tr>
-											<tr class="table-success">
-												<td>
-												<label><input type="checkbox" value=""></label>	
-												</td>
-												<td>
-													CC131231
-												</td>
-												<td>
-													Lola Flores
-												</td>
-												<td>
-													<div class="dropdown">
-														<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-															Retiro
-														</button>
-														<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-															 <a class="dropdown-item disabled" href="#">Vivienda</a> <a class="dropdown-item" href="#">Educación</a> <a class="dropdown-item" href="#">Otro</a>
-														</div>
-													</div>
-												</td>
-												<td>
-												<a href="#">
-												  <span class="glyphicon glyphicon-trash"></span>
-												</a>
-												</td>
-											</tr>
-											<tr class="table-warning">
-												<td>
-												<label><input type="checkbox" value=""></label>	
-												</td>
-												<td>
-													CC131231
-												</td>
-												<td>
-													Lola Flores
-												</td>
-												<td>
-													<div class="dropdown">
-														<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-															Retiro
-														</button>
-														<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-															 <a class="dropdown-item disabled" href="#">Vivienda</a> <a class="dropdown-item" href="#">Educación</a> <a class="dropdown-item" href="#">Otro</a>
-														</div>
-													</div>
-												</td>
-												<td>
-												<a href="#">
-												  <span class="glyphicon glyphicon-trash"></span>
-												</a>
-												</td>
-											</tr>
-											<tr class="table-danger">
-												<td>
-												<label><input type="checkbox" value=""></label>	
-												</td>
-												<td>
-													CC131231
-												</td>
-												<td>
-													Lola Flores
-												</td>
-												<td>
-													<div class="dropdown">
-														<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-															Retiro
-														</button>
-														<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-															 <a class="dropdown-item disabled" href="#">Vivienda</a> <a class="dropdown-item" href="#">Educación</a> <a class="dropdown-item" href="#">Otro</a>
-														</div>
-													</div>
-												</td>
-												<td>
-												<a href="#">
-												  <span class="glyphicon glyphicon-trash"></span>
-												</a>
-												</td>
-											</tr>
+										<% } %>
 										</tbody>
 									</table>
 								</div>
