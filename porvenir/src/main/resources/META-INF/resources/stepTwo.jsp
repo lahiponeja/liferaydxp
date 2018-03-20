@@ -71,7 +71,7 @@
 													
 												</td>
 												<td>
-													<aui:select class="btn btn-primary dropdown-toggle" id="<%=inputMotivo%>" 	showEmptyOption="true"  name="product"  placeholder="Select a product">
+													<aui:select class="btn btn-primary dropdown-toggle" id="<%=inputMotivo%>" 	showEmptyOption="true"  name="product"  placeholder="Seleccione">
 	            										<aui:option value="RetiroCesantiasPorlet.educacion"><liferay-ui:message key="RetiroCesantiasPorlet.educacion" /></aui:option>
 													    <aui:option value="RetiroCesantiasPorlet.retiro"><liferay-ui:message key="RetiroCesantiasPorlet.retiro" /></aui:option>
 													    <aui:option value="RetiroCesantiasPorlet.vivienda"><liferay-ui:message key="RetiroCesantiasPorlet.vivienda" /></aui:option>
