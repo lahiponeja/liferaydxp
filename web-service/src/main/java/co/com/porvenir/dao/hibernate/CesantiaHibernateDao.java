@@ -1,3 +1,10 @@
+/**
+ * ESTE COMPONENTE FUE REALIZADO BAJO LA METODOLOGIA DE DESARROLLO DE 
+ * VASS Y SE ENCUENTRA PROTEGIDO POR LAS LEYES DE DERECHOS DE AUTOR.
+ * @author Alejandro Vivas
+ * @version 0.0.1 20/03/2018
+ * @since 0.0.1 20/03/2018
+ */
 package co.com.porvenir.dao.hibernate;
 
 import java.util.List;
@@ -7,6 +14,12 @@ import javax.persistence.Query;
 import co.com.porvenir.dao.CesantiaDao;
 import co.com.porvenir.entidad.Cesantia;
 
+/**
+ * Dao para la entidad Cesantia
+ * @author Alejandro Vivas
+ * @since 0.0.1 20/03/2018
+ * @version 0.0.1 20/03/2018
+ */
 public class CesantiaHibernateDao extends HibernateDao implements CesantiaDao
 {
 	/** Consulta con las cesantias por empleador e id de empleado */
@@ -20,6 +33,5 @@ public class CesantiaHibernateDao extends HibernateDao implements CesantiaDao
 		query.setParameter("ID_EMPLEADOR", idEmpleador);
 		query.setParameter("IDS_AFILIADO", idsAfiliados);
 		return query.getResultList();
-	}
-	
+	}	
 }

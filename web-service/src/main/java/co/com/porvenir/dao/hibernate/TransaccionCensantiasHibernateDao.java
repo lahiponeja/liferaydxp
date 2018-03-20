@@ -11,6 +11,7 @@ import co.com.porvenir.dao.TransaccionCensantiasDao;
 import co.com.porvenir.entidad.TransaccionCensantias;
 
 /**
+ * Dao para la entidad TransaccionCensantias
  * @author Alejandro Vivas
  * @since 0.0.1 14/03/2018
  * @version 0.0.1 14/03/2018
@@ -29,5 +30,4 @@ public class TransaccionCensantiasHibernateDao extends HibernateDao implements T
 		getEntityManager().persist(transaccionCensantias);
 		return transaccionCensantias.getId();
 	}
-
 }

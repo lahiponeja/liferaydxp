@@ -17,6 +17,8 @@
 
 		<mule.version>3.8.1</mule.version>
 		<mule.tools.version>1.2</mule.tools.version>
+		
+		<junit.version>4.12</junit.version>
 
 		<hsqldb.version>2.3.5</hsqldb.version>
 		<hibernate.version>4.2.21.Final</hibernate.version>
@@ -135,6 +137,13 @@
 			<artifactId>mule-module-apikit</artifactId>
 			<version>${mule.version}</version>
 			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
