@@ -239,7 +239,7 @@
 	
 
 	
-	AUI().use('aui-progressbar', function(y) {			
+	AUI().use('aui-progressbar', function(Y) {			
 		new Y.ProgressBar(
 			      {
 			        boundingBox: '#<portlet:namespace/>id="formProgressBar"',

@@ -4,6 +4,7 @@
 <%@ include file="init.jsp"%>   
 <%@ page import="java.util.List"%>
 <%@ page import="co.com.general.porvenir.dto.Afiliado"%>
+<portlet:actionURL name="stepThree" var="stepThreeURL"></portlet:actionURL>
 <%
 
 	List<Afiliado> afiliados = (List<Afiliado>)renderRequest.getAttribute("afiliados"); 
@@ -13,23 +14,24 @@
 %>    
 <div class="row">
 								<div class="col-md-12">
+									<aui:form id="stepTwo" name="stepTwo" action="${stepThreeURL}" method="post" enctype="multipart/form-data">
 									<table class="table table-sm">
 										<thead>
 											<tr>
 												<th>
-													#
+													
 												</th>
 												<th>
-													Identificación
+													<liferay-ui:message key="RetiroCesantiasPorlet.identificacion" />
 												</th>
 												<th>
-													Nombre
+													<liferay-ui:message key="RetiroCesantiasPorlet.nombre" />
 												</th>
 												<th>
-													Saldo Retiro
+													<liferay-ui:message key="RetiroCesantiasPorlet.saldo" />
 												</th>
 												<th>
-													Concepto de Retiro
+													<liferay-ui:message key="RetiroCesantiasPorlet.concepto" />
 												</th>
 												<th>
 												X	
@@ -38,33 +40,50 @@
 											</tr>
 										</thead>
 										<tbody>
-										
+
 										<% for (int i=0; i< afiliados.size(); i++){ 
 											Afiliado afiliado = (Afiliado)afiliados.get(i);
+											String inputCheck="check"+afiliado.getIdAfiliado();
+											String inputId="id"+afiliado.getIdAfiliado();
+											String inputNombre="nombre"+afiliado.getIdAfiliado();
+											String inputSaldo="saldo"+afiliado.getIdAfiliado();
+											String inputMotivo="motivo"+afiliado.getIdAfiliado();
 										%>
 												
 											<tr>
 												<td>
-												<label><input type="checkbox" value=""></label>	
+												<aui:input id="<%=inputCheck%>"  name="" type="checkbox">
+												
+												</aui:input> 
 												</td>
 												<td> 
-													<%=afiliado.getIdAfiliado() %>
+												<aui:input id="<%=inputId%>" name="" type="text" value="<%=afiliado.getIdAfiliado()%>" disabled="disabled"></aui:input>
+													
 												</td>
 												<td>
-													<%=afiliado.getNombreAfiliado() %>
+												<aui:input id="<%=inputNombre%>" name="" type="text" value="<%=afiliado.getNombreAfiliado()%>" disabled="disabled"></aui:input>
+												
+													
 												</td>
 												<td>
-													<%=afiliado.getSaldoCesantias() %>
+													<aui:input id="<%=inputSaldo%>" name="" type="text" value="<%=afiliado.getSaldoCesantias()%>" disabled="disabled"></aui:input>
+												
+													
 												</td>
 												<td>
-													<div class="dropdown">
-														<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-															Retiro
-														</button>
-														<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-															 <a class="dropdown-item disabled" href="#">Vivienda</a> <a class="dropdown-item" href="#">Educación</a> <a class="dropdown-item" href="#">Otro</a>
-														</div>
-													</div>
+													<aui:select class="btn btn-primary dropdown-toggle" id="<%=inputMotivo%>" 	showEmptyOption="true"  name="product"  placeholder="Select a product">
+	            										<aui:option value="RetiroCesantiasPorlet.educacion"><liferay-ui:message key="RetiroCesantiasPorlet.educacion" /></aui:option>
+													    <aui:option value="RetiroCesantiasPorlet.retiro"><liferay-ui:message key="RetiroCesantiasPorlet.retiro" /></aui:option>
+													    <aui:option value="RetiroCesantiasPorlet.vivienda"><liferay-ui:message key="RetiroCesantiasPorlet.vivienda" /></aui:option>
+													    <aui:option value="RetiroCesantiasPorlet.otro"><liferay-ui:message key="RetiroCesantiasPorlet.otro" /></aui:option>
+													    <aui:validator name="required">
+													    function() {
+										                		debugger;
+										                		console.log("Validador"+<%=inputCheck%>);
+										                        return AUI.$('#<portlet:namespace /><%=inputCheck%>').prop('checked');
+										                }
+													    </aui:validator>
+	        										</aui:select>		
 												</td>
 												<td>
 												<a href="#">
@@ -74,7 +93,11 @@
 												
 											</tr>
 										<% } %>
+										
 										</tbody>
+									
 									</table>
+									<aui:button type="submit" class="btn btn-primary" id="btnNextStep" name="btnNextStep" value="RetiroCesantiasPorlet.continuar" ></aui:button>
+									</aui:form>
 								</div>
 							</div>
