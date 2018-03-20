@@ -159,7 +159,8 @@
                                var minsize=2000; // min 1kb
                                var maxsize=100000; 
                                var file=<portlet:namespace/>uploadFile;
-                               if((file.files[0].size>minsize)&&(file.files[0].size<=maxsize)){
+                       			debugger;
+                       		  if((file.files[0].size>minsize)&&(file.files[0].size<=maxsize)){
 	                            	   result = true;
 	                               }
                               	return result;
@@ -189,8 +190,7 @@
 								}
 						      
 						    };
-						debugger;
-			   
+						   
 						
 						var validator = new Y.FormValidator({
 							  	boundingBox: '#<portlet:namespace/>uploadDoc',
@@ -242,7 +242,7 @@
 	AUI().use('aui-progressbar', function(Y) {			
 		new Y.ProgressBar(
 			      {
-			        boundingBox: '#<portlet:namespace/>id="formProgressBar"',
+			        boundingBox: '#<portlet:namespace/>formProgressBar',
 			        label: '40%',
 			        max: 100,
 			        min: 0,
@@ -258,7 +258,6 @@
 			        width: 700
 			      }
 			    ).render();
-		  
 	});
 
 </script>

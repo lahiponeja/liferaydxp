@@ -12,6 +12,7 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.portal.commons.util.CommonsUtil;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.portlet.ActionRequest;
@@ -32,6 +34,7 @@ import javax.portlet.PortletException;
 import javax.portlet.ProcessAction;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -121,10 +124,13 @@ public class ControlerPortlet extends MVCPortlet {
 		}
 
 		UploadPortletRequest stepTwoPortletRequest = PortalUtil.getUploadPortletRequest(actionRequest);
-		Enumeration<String> atributos = stepTwoPortletRequest.getAttributeNames();
+		HttpServletRequest origRequest = PortalUtil.getOriginalServletRequest(PortalUtil.getHttpServletRequest(actionRequest));
+		
+		//ParamUtil.getStringValues(portletRequest, param)
+		//ParamUtil.getString(origRequest, "nameCompleteClient")
 		
 		
-		if (atributos != null && !(atributos.nextElement()!=null)) {
+		if (true) {
 			try {
 		
 				//System.out.println(afiliados.size());
