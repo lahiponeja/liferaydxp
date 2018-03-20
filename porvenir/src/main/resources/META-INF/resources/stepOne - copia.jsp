@@ -17,9 +17,6 @@
 <%@ page import="java.util.TreeMap"%>
 <%@ page import="java.util.Map"%>
 <%@ page import="co.com.RetiroCesantiasPorlet.constants.RetiroCesantiasPortletKeys"%>
-<%@ page import="com.liferay.portal.kernel.language.LanguageUtil"%>
-<%@ page import="java.util.ResourceBundle"%>
-
 
 
 <portlet:actionURL name="uploadDocument" var="uploadDocumentURL"></portlet:actionURL>
@@ -35,28 +32,31 @@
 
 	List<DLFolder> listFolder = DLFolderLocalServiceUtil.getDLFolders(-1, -1);
 	Map<String, DLFolder> folders = new TreeMap<String, DLFolder>();
-	//DLFolder folderDL = folders.get("docs");
-	String docsBase = LanguageUtil.get(ResourceBundle.getBundle("content/Language", request.getLocale()), "Folder.base");
-	String docsUpload = LanguageUtil.get(ResourceBundle.getBundle("content/Language", request.getLocale()), "Folder.carga");
-	String archivoCheque = LanguageUtil.get(ResourceBundle.getBundle("content/Language", request.getLocale()), "Nombre.archivoCheque");
-	String archivoCuenta = LanguageUtil.get(ResourceBundle.getBundle("content/Language", request.getLocale()), "Nombre.archivoCuenta");
+	DLFolder folderDL = folders.get("docs");
+	//DLFolder dlFolder = DLFolderLocalServiceUtil.getFolder(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docs");
+	long folder = 44831;
 
-	DLFolder folderDL = DLFolderLocalServiceUtil.getFolder(themeD.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, docsBase);
+	DLFileEntry fileEntryCH = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
 
-	DLFileEntry fileEntryCH = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getFileEntry(themeD.getScopeGroupId(), folderDL.getFolderId(), archivoCheque);
+	fileEntryCH = fileEntryCH.toEscapedModel();
 
-	DLFileEntry fileEntryCU = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getFileEntry(themeD.getScopeGroupId(), folderDL.getFolderId(), archivoCheque);
+	long fileEntryIdCh = fileEntryCH.getFileEntryId();
+	long folderIdCh = fileEntryCH.getFolderId();
+	String nameCh = fileEntryCH.getName();
+	String extensionCh = fileEntryCH.getExtension();
+	String titleCh = fileEntryCH.getTitle();
+
+	DLFileEntry fileEntryCU = com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil.getDLFileEntry(31724);
 
 	fileEntryCU = fileEntryCU.toEscapedModel();
 
-	long folderIdCh = fileEntryCH.getFolderId();
+	long fileEntryIdCu = fileEntryCU.getFileEntryId();
 	long folderIdCu = fileEntryCU.getFolderId();
-	String nameCh = fileEntryCH.getName();
-	String nameCu = fileEntryCH.getName();
-	
-	
+	String nameCu = fileEntryCU.getName();
+	String extensionCu = fileEntryCU.getExtension();
+	String titleCH = fileEntryCU.getTitle();
 	//Obtengo el directorio en el que están los archivos de la matriz
-	DLFolder dir = DLFolderLocalServiceUtil.getFolder(themeD.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, docsUpload);
+	DLFolder dir = DLFolderLocalServiceUtil.getFolder(themeD.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "docsUpload");
 
 	//Se obtienen los ficheros del directorio
 	List<DLFileEntry> dLFileEntrys = DLFileEntryLocalServiceUtil.getFileEntries(dir.getGroupId(), dir.getFolderId());
@@ -103,8 +103,8 @@
 			</dd>
 		</dl>
 		<ul class="nav" style="display: inline;">
-			<li class="nav-item"  style="display: inline-block;"><a class="nav-link active" href="<%=themeD.getPathMain()%>/document_library/get_file?folderId=<%=folderIdCh%>&name=<%=HttpUtil.encodeURL(nameCh)%>"><liferay-ui:message key="RetiroCesantiasPorlet.tituloArchivoCheque" />.xls</a></li>
-			<li class="nav-item"  style="display: inline-block;"><a class="nav-link"  href="<%=themeD.getPathMain()%>/document_library/get_file?folderId=<%=folderIdCu%>&name=<%=HttpUtil.encodeURL(nameCu)%>"><liferay-ui:message key="RetiroCesantiasPorlet.tituloArchivoCuenta" />.xls</a></li>
+			<li class="nav-item"  style="display: inline;"><a class="nav-link active" href="<%=themeD.getPathMain()%>/document_library/get_file?folderId=<%=folderIdCh%>&name=<%=HttpUtil.encodeURL(nameCh)%>"><liferay-ui:message key="RetiroCesantiasPorlet.tituloArchivoCheque" />.xls</a></li>
+			<li class="nav-item"  style="display: inline;"><a class="nav-link"  href="<%=themeD.getPathMain()%>/document_library/get_file?folderId=<%=folderIdCu%>&name=<%=HttpUtil.encodeURL(nameCu)%>">.xls<liferay-ui:message key="RetiroCesantiasPorlet.tituloArchivoCuenta" /></a></li>
 
 		</ul>
 		<aui:form id="uploadDoc" name="uploadDoc" action="${uploadDocumentURL}" method="post" enctype="multipart/form-data">
@@ -122,8 +122,7 @@
 				<div class="progress-bar w-75"></div>
 			</div>
 			<div class="checkbox">
-				<label for="checkInput">
-				 <liferay-ui:message	key="RetiroCesantiasPorlet.adjunte" />
+				<label for="checkInput"> <liferay-ui:message	key="RetiroCesantiasPorlet.adjunte" />
 				</label>
 				<aui:input id="checkInput" name="checkInput" type="checkbox"></aui:input> 
 				
@@ -156,19 +155,28 @@
                              {
                              customRuleForFile:function (value, fieldNode, ruleValue) {
                                var result = false;
-                               var minsize=2000; // min 1kb
-                               var maxsize=100000; 
+                               var minsize=25; // min 1kb
+                               var maxsize=20000; 
                                var file=<portlet:namespace/>uploadFile;
-                       			debugger;
-                       		  if((file.files[0].size>minsize)&&(file.files[0].size<=maxsize)){
-	                            	   result = true;
-	                               }
-                              	return result;
+                               debugger;
+                               if((file.size>minsize)&&(file.size<=maxsize)){
+                                   result = true;
+                                   debugger;
+                              	}
+                           		return result;
                              	},
                              },
                              true
                  		);
-				 var rules = {
+				/*   Y.mix(
+                          DEFAULTS_FORM_VALIDATOR.STRINGS,
+                          {
+                         	 customRuleForFile:"El archivo debe pesar entre 1MB y 20MB",
+                          },
+                          true		
+                 ); */
+                  
+				  var rules = {
 						  <portlet:namespace/>uploadFile: {
 						        acceptFiles: 'xls, xlsx',
 						        customRuleForFile:true,
@@ -183,14 +191,15 @@
 								<portlet:namespace/>uploadFile: {
 								acceptFiles: 'El tipo de archivo requerido es excel',
 						        required: 'El archivo es requerido.',
-						        customRuleForFile:"El archivo debe pesar entre 2MB y 100MB",
+						        customRuleForFile:"El archivo debe pesar entre 1MB y 20MB",
 						      	},
 						     	 <portlet:namespace/>checkInput: {
 						       required: 'Por favor confirme si desea adjuntar su archivo.'
 								}
 						      
 						    };
-						   
+						debugger;
+			   
 						
 						var validator = new Y.FormValidator({
 							  	boundingBox: '#<portlet:namespace/>uploadDoc',
@@ -221,8 +230,8 @@
 											//JSON Data coming back from Server
 											var message = instance.get('responseData');
 											if (message) {
-											//alert(message.retVal1);
-											//alert(message.retVal2)
+											alert(message.retVal1);
+											alert(message.retVal2)
 											}
 											else{
 											//A.one('#organizationNameError').hide();
@@ -233,16 +242,24 @@
 										}
 									}
 								});
-					}
+								
+								
+							}
+						
+						
+					
+						
+						
+
 			  }
 			);
 	
 
 	
-	AUI().use('aui-progressbar', function(Y) {			
+	AUI().use('aui-progressbar', function(y) {			
 		new Y.ProgressBar(
 			      {
-			        boundingBox: '#<portlet:namespace/>formProgressBar',
+			        boundingBox: '#<portlet:namespace/>id="formProgressBar"',
 			        label: '40%',
 			        max: 100,
 			        min: 0,
@@ -258,6 +275,7 @@
 			        width: 700
 			      }
 			    ).render();
+		  
 	});
 
 </script>

@@ -154,6 +154,9 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.6</version>
 				<configuration>
+					<autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
+			        <liferayVersion>${liferay.version}</liferayVersion>
+			        <pluginType>portlet</pluginType>
 					<archive>
 						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
 					</archive>

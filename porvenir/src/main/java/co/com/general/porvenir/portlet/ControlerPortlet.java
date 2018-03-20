@@ -6,20 +6,25 @@ import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.document.library.kernel.service.DLFolderLocalServiceUtil;
+import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.portal.commons.util.CommonsUtil;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.portlet.ActionRequest;
@@ -29,6 +34,7 @@ import javax.portlet.PortletException;
 import javax.portlet.ProcessAction;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -108,4 +114,37 @@ public class ControlerPortlet extends MVCPortlet {
 		}
 
 	}
+	
+	@ProcessAction(name = "stepThree")
+	public void stepThree(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+
+		ThemeDisplay themeD = null;
+		if (actionRequest != null) {
+			themeD = (ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		}
+
+		UploadPortletRequest stepTwoPortletRequest = PortalUtil.getUploadPortletRequest(actionRequest);
+		HttpServletRequest origRequest = PortalUtil.getOriginalServletRequest(PortalUtil.getHttpServletRequest(actionRequest));
+		
+		//ParamUtil.getStringValues(portletRequest, param)
+		//ParamUtil.getString(origRequest, "nameCompleteClient")
+		
+		
+		if (true) {
+			try {
+		
+				//System.out.println(afiliados.size());
+				//actionRequest.setAttribute("afiliados", afiliados);
+				//redirect a la pagina 2
+				actionResponse.setRenderParameter("jspPage", "/META-INF/resources/stepThree.jsp");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+	
+	
 }
