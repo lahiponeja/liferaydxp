@@ -13,14 +13,14 @@
 	System.out.println(afiliados.size());
 	if (afiliados != null && !afiliados.isEmpty())
 %>    
-<div class="row">
+							<div class="row">
 								<div class="col-md-12">
 									<aui:form id="stepTwo" name="stepTwo" action="${stepThreeURL}" method="post" enctype="multipart/form-data">
 									<table class="table table-sm">
 										<thead>
 											<tr>
 												<th>
-													
+													<input type="checkbox" name="select-all" id="select-all" />
 												</th>
 												<th>
 													<liferay-ui:message key="RetiroCesantiasPorlet.identificacion" />
@@ -102,7 +102,29 @@
 									</aui:form>
 								</div>
 							</div>
-							<script type="text/javascript">
+<script type="text/javascript">
+
+AUI().use("node", function(A){
+	A.one("<portlet:namespace/>select-all").on("click", function(){
+	    var values = [];
+	    A.all("input[type=checkbox]").each(function(){
+	        if(this.get("checked")){
+	            values.push(this.get("value"));
+	        }
+	    });
+	    console.log(values);
+	}); });
+/*
+//Listen for click on toggle checkbox
+$('#select-all').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $(':checkbox').each(function() {
+            this.checked = true;                        
+        });
+    }
+    
+});*/
 	
 	$(document).ready(function() {
 		

@@ -113,7 +113,7 @@
 						key="RetiroCesantiasPorlet.tituloAdjuntar" />
 
 				</label>
-				<aui:input type="file" class="form-control-file" id="uploadFile" name="uploadFile"></aui:input>
+				<aui:input type="file" class="form-control-file" id="uploadFile" name="uploadFile" ><aui:validator name="required" /></aui:input>
 				<p class="help-block">
 					<liferay-ui:message key="RetiroCesantiasPorlet.ayudaAdjuntar" />
 				</p>
@@ -207,16 +207,18 @@
 							// event.preventDefault();
 							}else{
 								
-								Y.io.request(url, {
+								document.<portlet:namespace/>inputForm.submit();
+								
+						/* 		Y.io.request(url, {
 									method: 'POST',
 									form: { id: '<portlet:namespace/>uploadDoc' },
 									dataType: 'json',
 									on:{
 									success: function(event, id, ob){
-											/* if(this.get('responseData')!=null && this.get('responseData').organizationNameExists){
+											 if(this.get('responseData')!=null && this.get('responseData').organizationNameExists){
 											A.one("#<portlet:namespace/>name").get('parentNode').removeClass('success').addClass('error');
 											A.one("#<portlet:namespace/>name").addClass('error-field lfr-input-text').removeClass('success-field');
-											A.one("#<portlet:namespace/>name").get('parentNode').append(A.one('#organizationNameError').show()); */
+											A.one("#<portlet:namespace/>name").get('parentNode').append(A.one('#organizationNameError').show()); 
 											var instance = this;
 											//JSON Data coming back from Server
 											var message = instance.get('responseData');
@@ -234,7 +236,7 @@
 									}
 								});
 					}
-			  }
+			  } */
 			);
 	
 
