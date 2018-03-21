@@ -15,12 +15,12 @@
 %>    
 							<div class="row">
 								<div class="col-md-12">
-									<aui:form id="stepTwo" name="stepTwo" action="${stepThreeURL}" method="post" enctype="multipart/form-data">
+									<aui:form id="stepThree" name="stepThree" action="${stepThreeURL}" method="post" enctype="multipart/form-data">
 									<table class="table table-sm">
 										<thead>
 											<tr>
 												<th>
-													<aui:input id="selectAll"  name="" type="checkbox" >
+													<aui:input id="selectAllt"  name="" type="checkbox" >
 												
 													</aui:input> 
 												</th>
@@ -35,9 +35,6 @@
 												</th>
 												<th>
 													<liferay-ui:message key="RetiroCesantiasPorlet.saldoretirar" />
-												</th>
-												<th>
-													<liferay-ui:message key="RetiroCesantiasPorlet.concepto" />
 												</th>
 												<th>
 													<liferay-ui:message key="RetiroCesantiasPorlet.tipodocumento" />
@@ -128,45 +125,4 @@
 								</div>
 							</div>
 
-<aui:script use="aui-node,aui-io-request,aui-base,aui-loading-mask,aui-form-validator">
-      
-/*       A.ready(function() {
-            loading();
-            onload();
-            
-      });
 
-      function loading(){
-            try {
-                  A.use('aui-loading-mask', function(A) {
-                        A.one('.container-fluid').plug(A.LoadingMask, { background: '#FFF', strings: { }, messageEl: A.one(".loadingMaskLoader") });
-                        A.one('.container-fluid').loadingmask.show();
-                  });
-            } catch(err) {
-                console.error("problema cargando la mascara");
-            }     
-      }
-      
-	  function onload(){
-	       // debugger;
-	       // alert("Hola");
-	          
-	      } 
-      
-	      
-	      A.one('#<portlet:namespace/>btnNextStepThree').on(
-	    	        'click',
-	    	        function(event) {
-	    	            alert('Thank you for clicking.')
-	    	        }
-	    	    );
-	      
-	  
-	     /*  A.on('click', function() {
-	    	  debugger;
-	          //carteraMora(this);
-	    	  alert("evento");
-	      }, "<portlet:namespace/>btnNextStep"); */
-
- */
-</aui:script>
