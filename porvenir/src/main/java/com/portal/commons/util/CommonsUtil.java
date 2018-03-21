@@ -14,7 +14,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
- * Clase utilitaria para uso generico de DPW.
+ * Clase utilitaria para uso generico del demo para porvenir.
  * 
  * @author luis.hernandez
  */
@@ -192,25 +192,9 @@ public class CommonsUtil {
 
 	}
 	
-	/**
-	 * Formatea una fecha dada con el formato "yyyy-MM-dd"
-	 * @param date
-	 * @return
-	 */
-	public static XMLGregorianCalendar getDateGregorianCalendar(Date date){
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    	XMLGregorianCalendar xmlGregorianCalendar = null;
-		try {
-			String dateString = sdf.format(date);
-			xmlGregorianCalendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(dateString);			
-		} catch (DatatypeConfigurationException e1) {
-			return null;
-		}
-		return xmlGregorianCalendar;
-	}
 
 	/**
-	 * Transforma de Gregorian calendar a String, metodo utilizado para la invocaion de servicios web.
+	 * Transforma de calendar a String, metodo utilizado para la invocacion de servicios web.
 	 *  
 	 * @param xmlGregorianCalendar Fecha en formato gregorian
 	 * @return Fecha convertida a String
