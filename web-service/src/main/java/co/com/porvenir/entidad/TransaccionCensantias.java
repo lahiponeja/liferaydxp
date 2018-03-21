@@ -1,5 +1,7 @@
 package co.com.porvenir.entidad;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,70 +38,198 @@ public class TransaccionCensantias {
 	@Column(name = "TIPO_RETIRO",nullable = false)
 	private int tipoRetiro;
 
-	public long getId() {
+	/**
+	 * Get the id
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @return the id
+	 */
+	public long getId()
+	{
 		return id;
 	}
 
-	public void setId(long id) {
+	/**
+	 * Set the id
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @param id the id to set
+	 */
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public Afiliado getAfiliado() {
+	/**
+	 * Get the afiliado
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @return the afiliado
+	 */
+	public Afiliado getAfiliado()
+	{
 		return afiliado;
 	}
 
-	public void setAfiliado(Afiliado afiliado) {
+	/**
+	 * Set the afiliado
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @param afiliado the afiliado to set
+	 */
+	public void setAfiliado(Afiliado afiliado)
+	{
 		this.afiliado = afiliado;
 	}
 
-	public Empleador getEmpleador() {
+	/**
+	 * Get the empleador
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @return the empleador
+	 */
+	public Empleador getEmpleador()
+	{
 		return empleador;
 	}
 
-	public void setEmpleador(Empleador empleador) {
+	/**
+	 * Set the empleador
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @param empleador the empleador to set
+	 */
+	public void setEmpleador(Empleador empleador)
+	{
 		this.empleador = empleador;
 	}
 
-	public long getCantidad() {
+	/**
+	 * Get the cantidad
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @return the cantidad
+	 */
+	public long getCantidad()
+	{
 		return cantidad;
 	}
 
-	public void setCantidad(long cantidad) {
+	/**
+	 * Set the cantidad
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @param cantidad the cantidad to set
+	 */
+	public void setCantidad(long cantidad)
+	{
 		this.cantidad = cantidad;
 	}
 
-	public String getMensaje() {
-		return mensaje;
-	}
-
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
-	}
-
-	public int getTipoTransaccion() {
-		return tipoTransaccion;
-	}
-
-	public void setTipoTransaccion(int tipoTransaccion) {
-		this.tipoTransaccion = tipoTransaccion;
-	}
-
-	public long getSaldoAntiguo() {
+	/**
+	 * Get the saldoAntiguo
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @return the saldoAntiguo
+	 */
+	public long getSaldoAntiguo()
+	{
 		return saldoAntiguo;
 	}
 
-	public void setSaldoAntiguo(long saldoAntiguo) {
+	/**
+	 * Set the saldoAntiguo
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @param saldoAntiguo the saldoAntiguo to set
+	 */
+	public void setSaldoAntiguo(long saldoAntiguo)
+	{
 		this.saldoAntiguo = saldoAntiguo;
 	}
 
-	public long getSaldoNuevo() {
+	/**
+	 * Get the saldoNuevo
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @return the saldoNuevo
+	 */
+	public long getSaldoNuevo()
+	{
 		return saldoNuevo;
 	}
 
-	public void setSaldoNuevo(long saldoNuevo) {
+	/**
+	 * Set the saldoNuevo
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @param saldoNuevo the saldoNuevo to set
+	 */
+	public void setSaldoNuevo(long saldoNuevo)
+	{
 		this.saldoNuevo = saldoNuevo;
-	}		
-	
+	}
+
+	/**
+	 * Get the mensaje
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @return the mensaje
+	 */
+	public String getMensaje()
+	{
+		return mensaje;
+	}
+
+	/**
+	 * Set the mensaje
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @param mensaje the mensaje to set
+	 */
+	public void setMensaje(String mensaje)
+	{
+		this.mensaje = mensaje;
+	}
+
+	/**
+	 * Get the tipoTransaccion
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @return the tipoTransaccion
+	 */
+	public int getTipoTransaccion()
+	{
+		return tipoTransaccion;
+	}
+
+	/**
+	 * Set the tipoTransaccion
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 * @param tipoTransaccion the tipoTransaccion to set
+	 */
+	public void setTipoTransaccion(int tipoTransaccion)
+	{
+		this.tipoTransaccion = tipoTransaccion;
+	}
+
 	/**
 	 * Set the tipoRetiro
 	 * @author Alejandro Vivas
@@ -122,5 +252,45 @@ public class TransaccionCensantias {
 	public int getTipoRetiro()
 	{
 		return tipoRetiro;
+	}
+	
+	/**
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 */
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (!(obj instanceof TransaccionCensantias))
+		{
+			return false;
+		}
+		TransaccionCensantias afiliado = (TransaccionCensantias) obj;
+
+		return Objects.equals(this.getId(), afiliado.getId()) 
+			&& Objects.equals(this.getAfiliado(), afiliado.getAfiliado())
+			&& Objects.equals(this.getEmpleador(), afiliado.getEmpleador())		
+			&& Objects.equals(this.getCantidad(), afiliado.getCantidad())
+			&& Objects.equals(this.getSaldoAntiguo(), afiliado.getSaldoAntiguo())
+			&& Objects.equals(this.getSaldoNuevo(), afiliado.getSaldoNuevo())
+			&& Objects.equals(this.getMensaje(), afiliado.getMensaje())
+			&& Objects.equals(this.getTipoTransaccion(), afiliado.getTipoTransaccion())
+			&& Objects.equals(this.getTipoRetiro(), afiliado.getTipoRetiro());
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 */
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(this.getId(), this.getAfiliado(), this.getEmpleador(),this.getCantidad(),this.getSaldoAntiguo(),this.getSaldoNuevo(),this.getMensaje(),this.getTipoTransaccion(),this.getTipoRetiro());
 	}
 }
