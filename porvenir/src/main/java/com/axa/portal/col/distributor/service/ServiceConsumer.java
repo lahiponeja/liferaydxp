@@ -20,9 +20,14 @@ public enum ServiceConsumer {
 	INSTANCE;
 
 	/**
-	 * 
+	 * Logger.
 	 */
 	private static final Log LOGGER = LogFactoryUtil.getLog(ServiceConsumer.class);
+	
+	/**
+	 * Key de error para el response.
+	 */
+	private static final String ERROR = "ERROR";
 
 	/**
 	 * @param afiliados
@@ -44,6 +49,10 @@ public enum ServiceConsumer {
 			
 			ConsultaAfiliadosResponse consultarProductoCompaniaRespTYPE = Provider.INSTANCE.getPortCesantias()
 					.consultarAfiliados(request);
+			
+			if (consultarProductoCompaniaRespTYPE.getEstado().equals(ERROR)){
+				throw new Exception(consultarProductoCompaniaRespTYPE.getMensaje());
+			}
 			
 			return consultarProductoCompaniaRespTYPE;
 		} catch (Exception e) {
@@ -72,6 +81,10 @@ public enum ServiceConsumer {
 			
 			RetiroResponse retiroResponse = Provider.INSTANCE.getPortCesantias()
 					.grabarRetiroCesantiasAfiliados(request);
+			
+			if (retiroResponse.getEstado().equals(ERROR)){
+				throw new Exception(retiroResponse.getMensaje());
+			}
 			
 			return retiroResponse;
 		} catch (Exception e) {
