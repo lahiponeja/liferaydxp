@@ -8,6 +8,7 @@
 package co.com.porvenir.dto;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Objeto conlos datos resultandos de una operacion de retiro de cesantias.
@@ -94,5 +95,40 @@ public class ResultadoRetiroCesantias
 	public void setNombreEmpleador(String nombreEmpleador)
 	{
 		this.nombreEmpleador = nombreEmpleador;
+	}
+	
+	
+	/**
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 */
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (!(obj instanceof ResultadoRetiroCesantias))
+		{
+			return false;
+		}
+		ResultadoRetiroCesantias resultadoRetiroCesantias = (ResultadoRetiroCesantias) obj;
+
+		return Objects.equals(this.getIdEmpleador(), resultadoRetiroCesantias.getIdEmpleador())
+			&& Objects.equals(this.getNombreEmpleador(), resultadoRetiroCesantias.getNombreEmpleador()) 
+			&& Objects.equals(this.getSaldoCensantias(), resultadoRetiroCesantias.getSaldoCensantias());
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 20/03/2018
+	 * @version 0.0.1 20/03/2018
+	 */
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(this.getIdEmpleador(), this.getNombreEmpleador(), this.getSaldoCensantias());
 	}
 }

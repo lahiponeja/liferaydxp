@@ -1,12 +1,31 @@
+/**
+ * ESTE COMPONENTE FUE REALIZADO BAJO LA METODOLOGIA DE DESARROLLO DE 
+ * VASS Y SE ENCUENTRA PROTEGIDO POR LAS LEYES DE DERECHOS DE AUTOR.
+ * @author Alejandro Vivas
+ * @version 0.0.1 21/03/2018
+ * @since 0.0.1 21/03/2018
+ */
 package co.com.porvenir.ws.dto;
 
+/**
+ * Clase con la respuesta de un retiro de cesantias
+ * @author Alejandro Vivas
+ * @since 0.0.1 21/03/2018
+ * @version 0.0.1 21/03/2018
+ */
 public class RetiroCesantiaResponse
 {
+	/** Numero de retiro */
 	private long noRetiro;
+	/** Numero de identificacion del afiliado */
 	private String noIdentificacionAfiliado;
+	/** Nombre del afiliado */
 	private String nombreAfiliado;
+	/** Monto del retiro */
 	private long montoRetiro;
+	/** Saldo de las cesantias */
 	private long saldoCensantias;
+	/** Estado de la operacion */
 	private String estado;
 
 	/**
@@ -152,5 +171,4 @@ public class RetiroCesantiaResponse
 	{
 		this.estado = estado;
 	}
-
 }

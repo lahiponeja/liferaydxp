@@ -26,7 +26,9 @@ import co.com.porvenir.service.ServicioCesantias;
 import co.com.porvenir.service.ServicioException;
 
 /**
- * Clase con la logica de cesantias
+ * Clase con la logica de cesantias. 
+ * Nota: Esta implementacion usa un synchronized en el metodo retirarCesantias para evitar que se actualice
+ * dos cesantias al tiempo. Esto es suficiente para una aplicacion demo pero no para un sistema en produccion.
  * @author Alejandro Vivas
  * @since 0.0.1 20/03/2018
  * @version 0.0.1 20/03/2018
@@ -90,7 +92,7 @@ public class ServicioImplCesantias implements ServicioCesantias
 	}
 
 	@Override
-	public ResultadoRetiroCesantias retirarCesantias(String idEmpleador, List<RetiroCesantias> listaRetiroCesantias) throws ServicioException
+	public synchronized ResultadoRetiroCesantias retirarCesantias(String idEmpleador, List<RetiroCesantias> listaRetiroCesantias) throws ServicioException
 	{
 		EntityManager entityManager = JPAInit.createEntityManager();
 		EntityTransaction entityTransaction = null;
@@ -151,7 +153,9 @@ public class ServicioImplCesantias implements ServicioCesantias
 					transaccionCensantias.setTipoTransaccion(1);
 					transaccionCensantias.setTipoRetiro(1);
 
+					// TODO Aqui se debe bloquear la fila
 					cesantia.setSaldo(nuevoSaldo);// Define el nuevo saldo de cesantia (JPA Guarda el dato en este momento)
+					
 					long idTransaccionCesantias = transaccionCensantiasHibernateDao.agregar(transaccionCensantias); // Guardar nueva transaccion
 					saldoCensantias.setIdTransaccionCesantias(idTransaccionCesantias);
 				}
@@ -172,7 +176,7 @@ public class ServicioImplCesantias implements ServicioCesantias
 		}
 		catch (Exception e)
 		{
-			if(entityTransaction != null)
+			if( (entityTransaction != null) && (entityTransaction.isActive()) )
 			{
 				entityTransaction.rollback();
 			}

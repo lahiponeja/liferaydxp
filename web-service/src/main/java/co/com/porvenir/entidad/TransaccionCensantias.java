@@ -1,3 +1,10 @@
+/**
+ * ESTE COMPONENTE FUE REALIZADO BAJO LA METODOLOGIA DE DESARROLLO DE 
+ * VASS Y SE ENCUENTRA PROTEGIDO POR LAS LEYES DE DERECHOS DE AUTOR.
+ * @author Alejandro Vivas
+ * @version 0.0.1 21/03/2018
+ * @since 0.0.1 21/03/2018
+ */
 package co.com.porvenir.entidad;
 
 import java.util.Objects;
@@ -12,6 +19,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Clase con los datos de una fila de la tabla TRANSACCION_CENSANTIAS
+ * @author Alejandro Vivas
+ * @since 0.0.1 21/03/2018
+ * @version 0.0.1 21/03/2018
+ */
 @Entity
 @Table(name = "TRANSACCION_CENSANTIAS")
 public class TransaccionCensantias {
@@ -268,17 +281,17 @@ public class TransaccionCensantias {
 		{
 			return false;
 		}
-		TransaccionCensantias afiliado = (TransaccionCensantias) obj;
+		TransaccionCensantias transaccionCensantias = (TransaccionCensantias) obj;
 
-		return Objects.equals(this.getId(), afiliado.getId()) 
-			&& Objects.equals(this.getAfiliado(), afiliado.getAfiliado())
-			&& Objects.equals(this.getEmpleador(), afiliado.getEmpleador())		
-			&& Objects.equals(this.getCantidad(), afiliado.getCantidad())
-			&& Objects.equals(this.getSaldoAntiguo(), afiliado.getSaldoAntiguo())
-			&& Objects.equals(this.getSaldoNuevo(), afiliado.getSaldoNuevo())
-			&& Objects.equals(this.getMensaje(), afiliado.getMensaje())
-			&& Objects.equals(this.getTipoTransaccion(), afiliado.getTipoTransaccion())
-			&& Objects.equals(this.getTipoRetiro(), afiliado.getTipoRetiro());
+		return Objects.equals(this.getId(), transaccionCensantias.getId()) 
+			&& Objects.equals(this.getAfiliado(), transaccionCensantias.getAfiliado())
+			&& Objects.equals(this.getEmpleador(), transaccionCensantias.getEmpleador())		
+			&& Objects.equals(this.getCantidad(), transaccionCensantias.getCantidad())
+			&& Objects.equals(this.getSaldoAntiguo(), transaccionCensantias.getSaldoAntiguo())
+			&& Objects.equals(this.getSaldoNuevo(), transaccionCensantias.getSaldoNuevo())
+			&& Objects.equals(this.getMensaje(), transaccionCensantias.getMensaje())
+			&& Objects.equals(this.getTipoTransaccion(), transaccionCensantias.getTipoTransaccion())
+			&& Objects.equals(this.getTipoRetiro(), transaccionCensantias.getTipoRetiro());
 	}
 
 	/**

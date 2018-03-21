@@ -73,7 +73,7 @@ public class DaoTestUtil
 	{		
 		Cesantia cesantia = new Cesantia();
 		cesantia.setAfiliado(afiliado);
-		cesantia.setSaldo(1_000_000*new Random().nextInt(10));
+		cesantia.setSaldo(1_000_000*(1+new Random().nextInt(10)));
 		entityManager.persist(cesantia);
 		return cesantia;
 	}

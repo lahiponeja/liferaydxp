@@ -1,3 +1,10 @@
+/**
+ * ESTE COMPONENTE FUE REALIZADO BAJO LA METODOLOGIA DE DESARROLLO DE 
+ * VASS Y SE ENCUENTRA PROTEGIDO POR LAS LEYES DE DERECHOS DE AUTOR.
+ * @author Alejandro Vivas
+ * @version 0.0.1 21/03/2018
+ * @since 0.0.1 21/03/2018
+ */
 package co.com.porvenir.ws;
 
 import java.util.ArrayList;
@@ -20,14 +27,21 @@ import co.com.porvenir.ws.dto.EmpleadorRequest;
 import co.com.porvenir.ws.dto.RetiroCesantiaResponse;
 import co.com.porvenir.ws.dto.RetiroResponse;
 
+/**
+ * Implementacion de servicio web de cesantias.
+ * @author Alejandro Vivas
+ * @since 0.0.1 21/03/2018
+ * @version 0.0.1 21/03/2018
+ */
 @WebService(endpointInterface = "co.com.porvenir.ws.ServicioCesantiasAfiliados", serviceName = "ServicioCesantiasAfiliados")
 public class ServicioWebImplCesantiasAfiliados implements ServicioWebCesantiasAfiliados
 {
 	/** Logger de la clase */
 	private static Logger logger = Logger.getLogger(ServicioWebImplCesantiasAfiliados.class);
-	
+	/** Servicio web de cesantias */
 	private ServicioCesantias servicioCesantias = new ServicioImplCesantias();
 
+	// Carga los datos iniciales 
 	static
 	{
 		try
@@ -95,7 +109,7 @@ public class ServicioWebImplCesantiasAfiliados implements ServicioWebCesantiasAf
 		}
 		catch (Exception e)
 		{
-			logger.error("Error al realizar la operacion",e);
+			logger.error("Error al consultar afiliados",e);
 			ConsultaAfiliadosResponse consultaAfiliadosResponse = new ConsultaAfiliadosResponse();
 			consultaAfiliadosResponse.setEstado("ERROR");
 			consultaAfiliadosResponse.setMensaje(e.getMessage());
@@ -108,6 +122,14 @@ public class ServicioWebImplCesantiasAfiliados implements ServicioWebCesantiasAf
 	{
 		try
 		{
+			if (empleadorRequest.getAfiliados() == null || empleadorRequest.getAfiliados().length == 0)
+			{
+				RetiroResponse retiroResponse = new RetiroResponse();
+				retiroResponse.setEstado("ERROR");
+				retiroResponse.setMensaje("No se enviaron afiliados");
+				return retiroResponse;
+			}
+			
 			List<RetiroCesantias> listaRetiroCesantias = new ArrayList<RetiroCesantias>();
 			for (AfiliadoRequest afiliadoRequest : empleadorRequest.getAfiliados())
 			{
@@ -149,7 +171,7 @@ public class ServicioWebImplCesantiasAfiliados implements ServicioWebCesantiasAf
 		}
 		catch(Exception e)
 		{
-			logger.error("Error al realizar la operacion",e);
+			logger.error("Error al almacenar retiro de cesantias",e);
 			RetiroResponse retiroResponse = new RetiroResponse();
 			retiroResponse.setEstado("ERROR");
 			retiroResponse.setMensaje(e.getMessage());

@@ -7,7 +7,7 @@
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
-    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.00" port="9000" doc:name="HTTP Listener Configuration"/>
+    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="9000" doc:name="HTTP Listener Configuration"/>
     <flow name="web-serviceFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="ServicioCesantiasAfiliados" doc:name="HTTP"/>
         <cxf:jaxws-service serviceClass="co.com.porvenir.ws.ServicioWebCesantiasAfiliados" doc:name="CXF"/>

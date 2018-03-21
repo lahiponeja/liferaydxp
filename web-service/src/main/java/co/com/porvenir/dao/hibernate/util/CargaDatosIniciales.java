@@ -1,3 +1,10 @@
+/**
+ * ESTE COMPONENTE FUE REALIZADO BAJO LA METODOLOGIA DE DESARROLLO DE 
+ * VASS Y SE ENCUENTRA PROTEGIDO POR LAS LEYES DE DERECHOS DE AUTOR.
+ * @author Alejandro Vivas
+ * @version 0.0.1 21/03/2018
+ * @since 0.0.1 21/03/2018
+ */
 package co.com.porvenir.dao.hibernate.util;
 
 import javax.persistence.EntityManager;
@@ -8,8 +15,20 @@ import co.com.porvenir.entidad.Afiliado;
 import co.com.porvenir.entidad.Cesantia;
 import co.com.porvenir.entidad.Empleador;
 
+/**
+ * Clase con los datos para la carga de datos iniciales
+ * @author Alejandro Vivas
+ * @since 0.0.1 21/03/2018
+ * @version 0.0.1 21/03/2018
+ */
 public class CargaDatosIniciales {
 	
+	/**
+	 * Carga datos iniciales de la aplicacion.
+	 * @author Alejandro Vivas
+	 * @since 0.0.1 21/03/2018
+	 * @version 0.0.1 21/03/2018
+	 */
 	public static void cargarDatosIniciales()
 	{
 		EntityManager entityManager = JPAInit.createEntityManager();

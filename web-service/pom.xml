@@ -17,7 +17,7 @@
 
 		<mule.version>3.8.1</mule.version>
 		<mule.tools.version>1.2</mule.tools.version>
-		
+
 		<junit.version>4.12</junit.version>
 
 		<hsqldb.version>2.3.5</hsqldb.version>
@@ -138,7 +138,7 @@
 			<version>${mule.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -210,5 +210,4 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
 </project>
