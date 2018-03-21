@@ -8,7 +8,7 @@ pipeline
         {
             steps 
             {
-            	echo 'Inicio: Construyendo web service'
+            	echo 'Inicio: Construyendo web services'
             	sh 'cd web-service;mvn compile'
                 echo 'Fin   : Construyendo web service'
             }
