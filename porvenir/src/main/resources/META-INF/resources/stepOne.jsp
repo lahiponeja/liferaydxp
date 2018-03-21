@@ -159,8 +159,7 @@
                                var minsize=2000; // min 1kb
                                var maxsize=100000; 
                                var file=<portlet:namespace/>uploadFile;
-                       			debugger;
-                       		  if((file.files[0].size>minsize)&&(file.files[0].size<=maxsize)){
+                               if((file.files[0].size>minsize)&&(file.files[0].size<=maxsize)){
 	                            	   result = true;
 	                               }
                               	return result;
@@ -179,7 +178,7 @@
 							}
 						  };
  
-						var fieldStrings = {
+				var fieldStrings = {
 								<portlet:namespace/>uploadFile: {
 								acceptFiles: 'El tipo de archivo requerido es excel',
 						        required: 'El archivo es requerido.',
@@ -190,7 +189,8 @@
 								}
 						      
 						    };
-						   
+						//debugger;
+			   
 						
 						var validator = new Y.FormValidator({
 							  	boundingBox: '#<portlet:namespace/>uploadDoc',
@@ -237,6 +237,8 @@
 			  }
 			);
 	
+	
+	
 
 	
 	AUI().use('aui-progressbar', function(Y) {			
@@ -258,6 +260,9 @@
 			        width: 700
 			      }
 			    ).render();
+		  
 	});
+	
+	
 
 </script>
