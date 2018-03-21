@@ -1,4 +1,3 @@
-<%@ include file="/init.jsp" %>
 <%@page import="java.util.ArrayList"%>
 <%@page language="java" contentType="text/html; charset=utf-8"%>
 <%@ include file="init.jsp"%>   
@@ -53,59 +52,40 @@
 										</thead>
 										<tbody>
 
-										<% /* for (int i=0; i< afiliados.size(); i++){ 
-											Afiliado afiliado = (Afiliado)afiliados.get(i);
-											String inputCheck="check"+afiliado.getIdAfiliado();
-											String inputId="id"+afiliado.getIdAfiliado();
-											String inputNombre="nombre"+afiliado.getIdAfiliado();
-											String inputSaldo="saldo"+afiliado.getIdAfiliado();
-											String inputMotivo="motivo"+afiliado.getIdAfiliado();
-										 */
-										 %>
-												
+										 <c:forEach items='${afiliados}' var='afiliado'>
+										<c:set var='inputCheck' value='"check"+${afiliado.idAfiliado}' />
+										<c:set var='inputId' value='"id"+${afiliado.idAfiliado}' />
+										<c:set var='inputNombre' value='"nombre"+${afiliado.idAfiliado}' />
+										<c:set var='inputSaldo' value='"saldo"+${afiliado.idAfiliado}' />
+										<c:set var='inputMotivo' value='"motivo"+${afiliado.idAfiliado}' />
+										
 											<tr>
 												<td>
-												<aui:input id="inputCheck"  name="" type="checkbox" >
-												
+												<aui:input id="${inputCheck}"  name="" type="checkbox" >
 												</aui:input> 
 												</td>
 												<td> 
-												<aui:input id="inputId" name="" type="text" value="afiliado.getIdAfiliado()" disabled="disabled"></aui:input>
-													
+												<aui:input id="${inputId}" name="" type="text" value="${afiliado.idAfiliado}" disabled="disabled"></aui:input>
 												</td>
 												<td>
-												<aui:input id="inputNombre" name="" type="text" value="afiliado.getNombreAfiliado()" disabled="disabled"></aui:input>
-												
-													
+												<aui:input id="${inputNombre}" name="" type="text" value="${afiliado.nombreAfiliado}" disabled="disabled"></aui:input>
 												</td>
 												<td>
-													<aui:input id="inputSaldo" name="" type="text" value="afiliado.getSaldoCesantias()" disabled="disabled"></aui:input>
-												
-													
+													<aui:input id="${inputSaldo}" name="" type="text" value="${afiliado.saldoCesantias}" disabled="disabled"></aui:input>
 												</td>
 												<td>
-													<aui:input id="inputSaldoRetirar" name="" type="text" value="afiliado.getSaldoCesantiasRetirar()" disabled="disabled"></aui:input>
-												
-													
-												</td>
-												<td>
-													<aui:select class="btn btn-primary dropdown-toggle" id="inputTipo" 	showEmptyOption="true"  name=""  placeholder="Seleccione">
-	            										<aui:option value="RetiroCesantiasPorlet.educacion"><liferay-ui:message key="RetiroCesantiasPorlet.CC" /></aui:option>
-													    <aui:option value="RetiroCesantiasPorlet.retiro"><liferay-ui:message key="RetiroCesantiasPorlet.CE" /></aui:option>
-													    <aui:option value="RetiroCesantiasPorlet.vivienda"><liferay-ui:message key="RetiroCesantiasPorlet.NIT" /></aui:option>
+													<aui:select value="${afiliado.motivo}" class="btn btn-primary dropdown-toggle" id="${inputMotivo}" showEmptyOption="true"  name=""  placeholder="Seleccione">
+	            										<aui:option value="RetiroCesantiasPorlet.educacion"><liferay-ui:message key="RetiroCesantiasPorlet.educacion" /></aui:option>
+													    <aui:option value="RetiroCesantiasPorlet.retiro"><liferay-ui:message key="RetiroCesantiasPorlet.retiro" /></aui:option>
+													    <aui:option value="RetiroCesantiasPorlet.vivienda"><liferay-ui:message key="RetiroCesantiasPorlet.vivienda" /></aui:option>
 													    <aui:option value="RetiroCesantiasPorlet.otro"><liferay-ui:message key="RetiroCesantiasPorlet.otro" /></aui:option>
 												</aui:select>		
 												</td>
 												<td>
-												<aui:input id="inputNoDocumento" name="" type="text" value="afiliado.getNombreAfiliado()" disabled="disabled"></aui:input>
-												
-													
+												<aui:input id="inputNoDocumento+${afiliado.idAfiliado}" name="" type="text" value="${afiliado.idAfiliado}" disabled="disabled"></aui:input>
 												</td>
-												
 												<td>
-												<aui:input id="inputNombreRazon" name="" type="text" value="afiliado.getNombreAfiliado()" disabled="disabled"></aui:input>
-												
-													
+												<aui:input id="inputNombreRazon+${afiliado.idAfiliado}" name="" type="text" value="${afiliado.nombreAfiliado}" disabled="disabled"></aui:input>
 												</td>
 												
 												<td>
@@ -115,7 +95,8 @@
 												</td>
 												
 											</tr>
-										<% //} %>
+										</c:forEach>
+												
 										
 										</tbody>
 									
