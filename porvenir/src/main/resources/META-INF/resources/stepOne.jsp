@@ -107,11 +107,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-	
-	$(document).ready(function() {
-		
-	});
-	
+
 	AUI().use(
 		    'aui-io-request',
 		    function(A){
@@ -170,71 +166,8 @@
 								rules: rules,
 								showAllMessages: true
 						});
-
-						 var url = '<%=uploadDocumentURL.toString() %>';
 							
-						
-						if(validator.hasErrors()){
-							alert("hello");
-							// event.preventDefault();
-							}else{
-								
-								Y.io.request(url, {
-									method: 'POST',
-									form: { id: '<portlet:namespace/>uploadDoc' },
-									dataType: 'json',
-									on:{
-									success: function(event, id, ob){
-											/* if(this.get('responseData')!=null && this.get('responseData').organizationNameExists){
-											A.one("#<portlet:namespace/>name").get('parentNode').removeClass('success').addClass('error');
-											A.one("#<portlet:namespace/>name").addClass('error-field lfr-input-text').removeClass('success-field');
-											A.one("#<portlet:namespace/>name").get('parentNode').append(A.one('#organizationNameError').show()); */
-											var instance = this;
-											//JSON Data coming back from Server
-											var message = instance.get('responseData');
-											if (message) {
-											//alert(message.retVal1);
-											//alert(message.retVal2)
-											}
-											else{
-											//A.one('#organizationNameError').hide();
-												if(!validator.hasErrors()){
-													document.<portlet:namespace/>inputForm.submit();
-												}
-											}
-										}
-									}
-								});
-					}
-			  }
+			
 			);
-	
-	
-	
-
-	
-	AUI().use('aui-progressbar', function(Y) {			
-		new Y.ProgressBar(
-			      {
-			        boundingBox: '#<portlet:namespace/>formProgressBar',
-			        label: '40%',
-			        max: 100,
-			        min: 0,
-			        on: {
-			          complete: function(e) {
-			            this.set('label', 'Complete!');
-			          },
-			          valueChange: function(e) {
-			            this.set('label', e.newVal + '%');
-			          }
-			        },
-			        value: 40,
-			        width: 700
-			      }
-			    ).render();
-		  
-	});
-	
-	
 
 </script>
