@@ -13,7 +13,6 @@ import co.com.porvenir.ws.ConsultaAfiliadosResponse;
  */
 public class ObjectTransformer {
 	
-	
 	/**
 	 * @param consulta
 	 * @param afiliadosExcel

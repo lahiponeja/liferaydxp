@@ -16,27 +16,27 @@ public enum Provider {
 	INSTANCE;
 	
 	/**
-	 * 
+	 * Service name.
 	 */
 	private static final QName SERVICE_NAME = new QName("http://ws.porvenir.com.co/", "ServicioWebCesantiasAfiliadosService");
 	
 	/**
-	 * 
+	 * Logger.
 	 */
 	private Log LOGGER = LogFactoryUtil.getLog(Provider.class);
 	
 	/**
-	 * 
+	 * Port.
 	 */
 	private ServicioWebCesantiasAfiliados portCesantias;
 	
 	/**
-	 * 
+	 * Environment
 	 */
 	private Enviroment enviroment;
 	
 	/**
-	 * 
+	 * Constructor.
 	 */
 	private Provider(){
 		try {
@@ -62,7 +62,7 @@ public enum Provider {
 	 * @throws MalformedURLException
 	 */
 	private void setPortCesantias() throws MalformedURLException {
-		URL wsdlURL = new URL(enviroment.getServiceURLCartera()); 
+		URL wsdlURL = new URL(enviroment.getServiceURLCesantias()); 
 		ServicioWebCesantiasAfiliadosService serviceInstance = new ServicioWebCesantiasAfiliadosService(wsdlURL, SERVICE_NAME);
 		this.portCesantias = serviceInstance.getServicioWebCesantiasAfiliadosPort();
 	}

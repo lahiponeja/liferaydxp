@@ -10,28 +10,25 @@ import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
 public class Enviroment {
 	
 	private final static String SERVICE_URL = "service-url";
-	private String serviceURLCartera;
+	private String serviceURLCesantias;
 	
 	public Enviroment (){
-		//serviceURLCartera = "http://200.119.44.98:9000/ServicioCesantiasAfiliados?wsdl";
 		Configuration configuration=ConfigurationFactoryUtil.getConfiguration(Enviroment.class.getClassLoader(), "portlet");
 		String mailSubject = configuration.get(SERVICE_URL);
-		serviceURLCartera = mailSubject;
-		System.out.println("serviceURLCartera " + serviceURLCartera);
+		serviceURLCesantias = mailSubject;
 	}
 
-	public String getServiceURLCartera() {
-		if (serviceURLCartera == null || serviceURLCartera.isEmpty()){
+	public String getServiceURLCesantias() {
+		if (serviceURLCesantias == null || serviceURLCesantias.isEmpty()){
 			Configuration configuration=ConfigurationFactoryUtil.getConfiguration(Enviroment.class.getClassLoader(), "portlet");
 			String mailSubject = configuration.get(SERVICE_URL);
-			serviceURLCartera = mailSubject;
-			System.out.println("serviceURLCartera " + serviceURLCartera);
+			serviceURLCesantias = mailSubject;
 		}
-		return serviceURLCartera;
+		return serviceURLCesantias;
 	}
 
-	public void setServiceURLCartera(String serviceURLGeneralLifePolicyDetail) {
-		this.serviceURLCartera = serviceURLGeneralLifePolicyDetail;
+	public void setServiceURLCesantias(String serviceURLGeneralLifePolicyDetail) {
+		this.serviceURLCesantias = serviceURLGeneralLifePolicyDetail;
 	}
 
 	
