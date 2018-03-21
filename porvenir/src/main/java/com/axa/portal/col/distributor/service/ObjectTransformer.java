@@ -7,9 +7,18 @@ import co.com.general.porvenir.dto.Afiliado;
 import co.com.porvenir.ws.AfiliadoResponse;
 import co.com.porvenir.ws.ConsultaAfiliadosResponse;
 
+/**
+ * @author USER
+ *
+ */
 public class ObjectTransformer {
 	
 	
+	/**
+	 * @param consulta
+	 * @param afiliadosExcel
+	 * @return
+	 */
 	public static List<Afiliado> convert(ConsultaAfiliadosResponse consulta, List<Afiliado> afiliadosExcel){
 		List<Afiliado> afiliados = new ArrayList<Afiliado>(); 
 		List<AfiliadoResponse> afiliadosResponse = consulta.getAfiliados();
