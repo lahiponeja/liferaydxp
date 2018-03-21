@@ -75,7 +75,7 @@ public class CargaDatosIniciales {
 		
 		Empleador empleador2 = new Empleador();
 		empleador2.setId("2");
-		empleador2.setNombre("Sociaedad San Diego LTDA");
+		empleador2.setNombre("Sociedad San Diego LTDA");
 		entityManager.persist(empleador2);
 		
 		Afiliado afiliado4 = new Afiliado();
