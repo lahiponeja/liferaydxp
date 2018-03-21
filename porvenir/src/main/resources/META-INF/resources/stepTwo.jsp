@@ -20,7 +20,9 @@
 										<thead>
 											<tr>
 												<th>
-													<input type="checkbox" name="select-all" id="select-all" />
+													<aui:input id="selectAll"  name="" type="checkbox" >
+												
+													</aui:input> 
 												</th>
 												<th>
 													<liferay-ui:message key="RetiroCesantiasPorlet.identificacion" />
@@ -97,7 +99,7 @@
 							</div>
 <script type="text/javascript">
 
- //Listen for click on toggle checkbox
+/*  //Listen for click on toggle checkbox
 $('#select-all').click(function(event) {   
     if(this.checked) {
         // Iterate each checkbox
@@ -145,7 +147,7 @@ $('#select-all').click(function(event) {
 	
 		
 	});
- 	 
+ 	  */
 
 
 </script>
@@ -183,6 +185,7 @@ $('#select-all').click(function(event) {
 	    	        }
 	    	    );
 	      
+	  
 	     /*  A.on('click', function() {
 	    	  debugger;
 	          //carteraMora(this);
