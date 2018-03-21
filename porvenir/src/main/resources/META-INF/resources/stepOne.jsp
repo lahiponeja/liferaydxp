@@ -20,8 +20,6 @@
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil"%>
 <%@ page import="java.util.ResourceBundle"%>
 
-
-
 <portlet:actionURL name="uploadDocument" var="uploadDocumentURL"></portlet:actionURL>
 
 <%
@@ -53,32 +51,6 @@
 	long folderIdCu = fileEntryCU.getFolderId();
 	String nameCh = fileEntryCH.getName();
 	String nameCu = fileEntryCH.getName();
-	
-	
-	//Obtengo el directorio en el que están los archivos de la matriz
-	DLFolder dir = DLFolderLocalServiceUtil.getFolder(themeD.getScopeGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, docsUpload);
-
-	//Se obtienen los ficheros del directorio
-	List<DLFileEntry> dLFileEntrys = DLFileEntryLocalServiceUtil.getFileEntries(dir.getGroupId(), dir.getFolderId());
-	
-	List<DLFileEntry> dLFileEntrysAux=new ArrayList<DLFileEntry>(dLFileEntrys);
-	
-	Collections.sort(dLFileEntrysAux, new Comparator<DLFileEntry>(){
-
-		
-		public int compare(DLFileEntry o1, DLFileEntry o2) {
-			return o1.getTitle().compareTo(o2.getTitle());
-		}
-	});
-	
-	for (DLFileEntry file : dLFileEntrysAux) {
-		if(file.getExtension().equals("xlsx")){
-			System.out.println("nombre: " + file.getTitle());
-			
-		}
-	}
-	
-
  
 %>
 
