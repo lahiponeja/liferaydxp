@@ -2,7 +2,6 @@ package com.axa.portal.col.distributor.service;
 
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 
 /**
  * Clase para configurar los endpoints de los WS

@@ -15,33 +15,53 @@ public enum Provider {
 	
 	INSTANCE;
 	
+	/**
+	 * 
+	 */
 	private static final QName SERVICE_NAME = new QName("http://ws.porvenir.com.co/", "ServicioWebCesantiasAfiliadosService");
 	
-	private Log logger = LogFactoryUtil.getLog(Provider.class);
+	/**
+	 * 
+	 */
+	private Log LOGGER = LogFactoryUtil.getLog(Provider.class);
 	
+	/**
+	 * 
+	 */
 	private ServicioWebCesantiasAfiliados portCesantias;
 	
+	/**
+	 * 
+	 */
 	private Enviroment enviroment;
 	
+	/**
+	 * 
+	 */
 	private Provider(){
 		try {
 			enviroment = new Enviroment();
-			setPortPolicy();
+			setPortCesantias();
 		} catch (Exception e) {
-			logger.error("ERROR");
+			LOGGER.error("ERROR: " + e);
 		}
 	}
 	
-	public ServicioWebCesantiasAfiliados getPortCartera() throws MalformedURLException {
+	/**
+	 * @return
+	 * @throws MalformedURLException
+	 */
+	public ServicioWebCesantiasAfiliados getPortCesantias() throws MalformedURLException {
 		if (portCesantias == null){
-			setPortPolicy();
+			setPortCesantias();
 		}
 		return this.portCesantias;
 	}
-	
 
-	private void setPortPolicy() throws MalformedURLException {
-		logger.info("url cartera " + enviroment.getServiceURLCartera());
+	/**
+	 * @throws MalformedURLException
+	 */
+	private void setPortCesantias() throws MalformedURLException {
 		URL wsdlURL = new URL(enviroment.getServiceURLCartera()); 
 		ServicioWebCesantiasAfiliadosService serviceInstance = new ServicioWebCesantiasAfiliadosService(wsdlURL, SERVICE_NAME);
 		this.portCesantias = serviceInstance.getServicioWebCesantiasAfiliadosPort();
