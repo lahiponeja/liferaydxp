@@ -19,7 +19,7 @@
 										<thead>
 											<tr>
 												<th>
-													<aui:input id="selectAll"  name="" type="checkbox" >
+													<aui:input id="selectAllt"  name="" type="checkbox" >
 												
 													</aui:input> 
 												</th>
