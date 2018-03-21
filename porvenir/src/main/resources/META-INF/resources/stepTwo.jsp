@@ -53,7 +53,7 @@
 												
 											<tr>
 												<td>
-												<aui:input id="<%=inputCheck%>"  name="" type="checkbox">
+												<aui:input id="<%=inputCheck%>"  name="" type="checkbox" >
 												
 												</aui:input> 
 												</td>
@@ -77,14 +77,7 @@
 													    <aui:option value="RetiroCesantiasPorlet.retiro"><liferay-ui:message key="RetiroCesantiasPorlet.retiro" /></aui:option>
 													    <aui:option value="RetiroCesantiasPorlet.vivienda"><liferay-ui:message key="RetiroCesantiasPorlet.vivienda" /></aui:option>
 													    <aui:option value="RetiroCesantiasPorlet.otro"><liferay-ui:message key="RetiroCesantiasPorlet.otro" /></aui:option>
-													    <aui:validator name="required">
-													    function() {
-										                		debugger;
-										                		console.log("Validador"+<%=inputCheck%>);
-										                        return AUI.$('<portlet:namespace /><%=inputCheck%>').prop('checked');
-										                }
-													    </aui:validator>
-	        										</aui:select>		
+												</aui:select>		
 												</td>
 												<td>
 												<a href="#">
@@ -98,102 +91,103 @@
 										</tbody>
 									
 									</table>
-									<aui:button type="submit" class="btn btn-primary" id="btnNextStep" name="btnNextStep" value="RetiroCesantiasPorlet.continuar" ></aui:button>
+									<aui:button type="submit" class="btn btn-primary" id="btnNextStep" name="btnNextStep" value="RetiroCesantiasPorlet.continuar" aria-disabled="true"></aui:button>
 									</aui:form>
 								</div>
 							</div>
 <script type="text/javascript">
 
-AUI().use("node", function(A){
-	A.one("<portlet:namespace/>select-all").on("click", function(){
-	    var values = [];
-	    A.all("input[type=checkbox]").each(function(){
-	        if(this.get("checked")){
-	            values.push(this.get("value"));
-	        }
-	    });
-	    console.log(values);
-	}); });
-/*
-//Listen for click on toggle checkbox
+ //Listen for click on toggle checkbox
 $('#select-all').click(function(event) {   
     if(this.checked) {
         // Iterate each checkbox
         $(':checkbox').each(function() {
+        	console.log("check "+this);
             this.checked = true;                        
         });
+        $("#filters select").each(function() {
+        	console.log("select "+this);
+        	this.required = true;                        
+        });
+    }else {
+    	$(':checkbox').each(function() {
+            this.checked = false;                        
+        })
+        $("#filters select").each(function() {
+            this.required = false;                        
+        })
+    	
+    	
     }
     
-});*/
-	
+}); 
+/* 	function changeRequired(){
+		
+		 $(':checkbox').each(function() {
+			 debugger;
+			 if(this.checked) {
+			        // Iterate each checkbox
+			        $("#filters select").each(function() {
+			            this.required = true;                        
+			        });
+			    }else {
+			    	$("#filters select").each(function() {
+			            this.required = false;                        
+			        })
+			    	
+			    }                        
+	        });
+		
+	}
+
 	$(document).ready(function() {
+		//$( "#btnNextStep" ).prop( "disabled", true );
+	
 		
 	});
-	
-	AUI().use(
-		    'aui-io-request',
-		    function(A){
-
-		});
-
-	AUI().use(
-			  'aui-form-validator',
-			  function(Y) {
-				
-				 var rules = {
-						
-						  };
- 
-						var fieldStrings = {
-								
-						      
-						    };
-			   
-						
-						var validator = new Y.FormValidator({
-							  	boundingBox: '#<portlet:namespace/>stepTwo',
-						        fieldStrings: fieldStrings,
-								rules: rules,
-								showAllMessages: true
-						});
-
-						 var url = '<%=stepThreeURL.toString() %>';
-							
-						
-						if(validator.hasErrors()){
-							alert("hello");
-							// event.preventDefault();
-							}else{
-								
-								Y.io.request(url, {
-									method: 'POST',
-									form: { id: '<portlet:namespace/>uploadDoc' },
-									dataType: 'json',
-									on:{
-									success: function(event, id, ob){
-											/* if(this.get('responseData')!=null && this.get('responseData').organizationNameExists){
-											A.one("#<portlet:namespace/>name").get('parentNode').removeClass('success').addClass('error');
-											A.one("#<portlet:namespace/>name").addClass('error-field lfr-input-text').removeClass('success-field');
-											A.one("#<portlet:namespace/>name").get('parentNode').append(A.one('#organizationNameError').show()); */
-											var instance = this;
-											//JSON Data coming back from Server
-											var message = instance.get('responseData');
-											if (message) {
-											//alert(message.retVal1);
-											//alert(message.retVal2)
-											}
-											else{
-											//A.one('#organizationNameError').hide();
-												if(!validator.hasErrors()){
-													document.<portlet:namespace/>inputForm.submit();
-												}
-											}
-										}
-									}
-								});
-					}
-			  }
-			);
+ 	 
 
 
 </script>
+
+<aui:script use="aui-node,aui-io-request,aui-base,aui-loading-mask,aui-form-validator">
+      
+      A.ready(function() {
+            loading();
+            onload();
+            
+      });
+
+      function loading(){
+            try {
+                  A.use('aui-loading-mask', function(A) {
+                        A.one('.container-fluid').plug(A.LoadingMask, { background: '#FFF', strings: { }, messageEl: A.one(".loadingMaskLoader") });
+                        A.one('.container-fluid').loadingmask.show();
+                  });
+            } catch(err) {
+                console.error("problema cargando la mascara");
+            }     
+      }
+      
+	      function onload(){
+	        debugger;
+	        alert("Hola");
+	          
+	      } 
+      
+	      
+	      A.one('#<portlet:namespace/>btnNextStep').on(
+	    	        'click',
+	    	        function(event) {
+	    	            alert('Thank you for clicking.')
+	    	        }
+	    	    );
+	      
+	     /*  A.on('click', function() {
+	    	  debugger;
+	          //carteraMora(this);
+	    	  alert("evento");
+	      }, "<portlet:namespace/>btnNextStep"); */
+
+
+</aui:script>
