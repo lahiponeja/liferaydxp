@@ -23,6 +23,7 @@
 <portlet:actionURL name="uploadDocument" var="uploadDocumentURL"></portlet:actionURL>
 
 <%
+	System.out.println("Nueva version");
 	ThemeDisplay themeD = null;
 	if (request != null) {
 		themeD = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
