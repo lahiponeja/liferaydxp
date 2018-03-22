@@ -35,9 +35,13 @@
 <portlet:actionURL name="stepThree" var="stepThreeURL"></portlet:actionURL>
 							<div class="row">
 								<div class="col-md-12">
+<<<<<<< HEAD
 									<aui:form id="stepTwo" name="stepTwo">
 									
 										<table class="table table-sm">
+=======
+									<table class="table table-sm">
+>>>>>>> branch 'master' of https://github.com/mfelipeac/Demo.git
 										<thead>
 											<tr>
 												<th>
@@ -74,9 +78,13 @@
 										
 											<tr>
 												<td>
+<<<<<<< HEAD
 												
             									<input name='errorMessageAnchor' hidden/>
 												<aui:input id="${inputCheck}"  name="" class="checkbox" type="checkbox" >
+=======
+												<aui:input id="${inputCheck}"  name="" type="checkbox" >
+>>>>>>> branch 'master' of https://github.com/mfelipeac/Demo.git
 												
 												</aui:input> 
 												</td>
@@ -114,13 +122,22 @@
 										</tbody>
 									
 									</table>
+<<<<<<< HEAD
 									<a class="btn btn-primary" href="${stepThreeURL}">Continuar</a>
 									<a class="" data-param>set data</a>
 									</aui:form>
+=======
+									<a class="" href="${stepThreeURL}">Continuar</a>
+									<a class="" data-param>set data</a>
+>>>>>>> branch 'master' of https://github.com/mfelipeac/Demo.git
 								</div>
 							</div>
+<<<<<<< HEAD
 	<script type="text/javascript">
+=======
+>>>>>>> branch 'master' of https://github.com/mfelipeac/Demo.git
 
+<<<<<<< HEAD
  //Listen for click on toggle checkbox
 $('#selectAll').click(function(event) {   
     if(this.checked) {
@@ -171,6 +188,12 @@ A.on('click', function() {
 		}); });
 		
 		AUI().use('aui-io-request', function(A){
+=======
+<aui:script use="aui-node,aui-io-request,aui-base">
+      
+	A.on('click', function() {
+	AUI().use('aui-io-request', function(A){
+>>>>>>> branch 'master' of https://github.com/mfelipeac/Demo.git
 		A.io.request('<%=dataURL.toString()%>', { 
 			method: 'post', 
 				on: {

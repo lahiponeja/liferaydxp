@@ -108,7 +108,11 @@
 										</tbody>
 									
 									</table>
+<<<<<<< HEAD
 									<a class="btn btn-primary" href="${stepFourURL}">Continuar</a>
+=======
+									<a class="" href="${stepFourURL}">Continuar</a>
+>>>>>>> branch 'master' of https://github.com/mfelipeac/Demo.git
 									</aui:form>
 								</div>
 							</div>
