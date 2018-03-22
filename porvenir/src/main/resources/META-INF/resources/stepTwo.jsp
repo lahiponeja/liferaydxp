@@ -5,6 +5,7 @@
 <%@ page import="co.com.general.porvenir.dto.Afiliado"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<portlet:resourceURL id="/data/event" var="dataURL" />
 
 <p>
 	<b><liferay-ui:message key="RetiroCesantiasPorlet.caption"/></b>
@@ -63,11 +64,11 @@
 										<tbody>
 
 										<c:forEach items='${afiliados}' var='afiliado'>
-										<c:set var='inputCheck' value='"check"+${afiliado.idAfiliado}' />
-										<c:set var='inputId' value='"id"+${afiliado.idAfiliado}' />
-										<c:set var='inputNombre' value='"nombre"+${afiliado.idAfiliado}' />
-										<c:set var='inputSaldo' value='"saldo"+${afiliado.idAfiliado}' />
-										<c:set var='inputMotivo' value='"motivo"+${afiliado.idAfiliado}' />
+										<c:set var='inputCheck' value='check+${afiliado.idAfiliado}' />
+										<c:set var='inputId' value='id+${afiliado.idAfiliado}' />
+										<c:set var='inputNombre' value='nombre+${afiliado.idAfiliado}' />
+										<c:set var='inputSaldo' value='saldo+${afiliado.idAfiliado}' />
+										<c:set var='inputMotivo' value='motivo+${afiliado.idAfiliado}' />
 										
 											<tr>
 												<td>
@@ -109,103 +110,35 @@
 										</tbody>
 									
 									</table>
-									<a class="" href="${stepThreeURL}" data-detail>Continuar</a>
+									<a class="" href="${stepThreeURL}">Continuar</a>
+									<a class="" data-param>set data</a>
 								</div>
 							</div>
-<script type="text/javascript">
 
-/*  //Listen for click on toggle checkbox
-$('#select-all').click(function(event) {   
-    if(this.checked) {
-        // Iterate each checkbox
-        $(':checkbox').each(function() {
-        	console.log("check "+this);
-            this.checked = true;                        
-        });
-        $("#filters select").each(function() {
-        	console.log("select "+this);
-        	this.required = true;                        
-        });
-    }else {
-    	$(':checkbox').each(function() {
-            this.checked = false;                        
-        })
-        $("#filters select").each(function() {
-            this.required = false;                        
-        })
-    	
-    	
-    }
-    
-}); 
-/* 	function changeRequired(){
-		
-		 $(':checkbox').each(function() {
-			 debugger;
-			 if(this.checked) {
-			        // Iterate each checkbox
-			        $("#filters select").each(function() {
-			            this.required = true;                        
-			        });
-			    }else {
-			    	$("#filters select").each(function() {
-			            this.required = false;                        
-			        })
-			    	
-			    }                        
-	        });
-		
-	}
-
-	$(document).ready(function() {
-		//$( "#btnNextStep" ).prop( "disabled", true );
-	
-		
-	});
- 	  */
-
-
-</script>
-
-<aui:script use="aui-node,aui-io-request,aui-base,aui-loading-mask,aui-form-validator">
+<aui:script use="aui-node,aui-io-request,aui-base">
       
-      A.ready(function() {
-            loading();
-            onload();
-            
+	A.on('click', function() {
+	AUI().use('aui-io-request', function(A){
+		A.io.request('<%=dataURL.toString()%>', { 
+			method: 'post', 
+				on: {
+					success: function() {
+						console.log("suc");
+					}, 
+					failure: function(event, id, xhr) {
+						console.log("errro");
+					} 
+				} 
+		}); 
+	});
+}, "[data-param]"); 
       });
 
-      function loading(){
-            try {
-                  A.use('aui-loading-mask', function(A) {
-                        A.one('.container-fluid').plug(A.LoadingMask, { background: '#FFF', strings: { }, messageEl: A.one(".loadingMaskLoader") });
-                        A.one('.container-fluid').loadingmask.show();
-                  });
-            } catch(err) {
-                console.error("problema cargando la mascara");
-            }     
-      }
-      
-	      function onload(){
-	        debugger;
-	        alert("Hola");
-	          
-	      } 
-      
-	      
-	      A.one('#<portlet:namespace/>btnNextStep').on(
+	  /*     A.one('#<portlet:namespace/>btnNextStep').on(
 	    	        'click',
 	    	        function(event) {
 	    	            alert('Thank you for clicking.')
 	    	        }
-	    	    );
+	    	    ); */
 	      
-	  
-	     /*  A.on('click', function() {
-	    	  debugger;
-	          //carteraMora(this);
-	    	  alert("evento");
-	      }, "<portlet:namespace/>btnNextStep"); */
-
-
 </aui:script>

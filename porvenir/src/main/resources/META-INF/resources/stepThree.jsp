@@ -53,11 +53,11 @@
 										<tbody>
 
 										 <c:forEach items='${afiliados}' var='afiliado'>
-										<c:set var='inputCheck' value='"check"+${afiliado.idAfiliado}' />
-										<c:set var='inputId' value='"id"+${afiliado.idAfiliado}' />
-										<c:set var='inputNombre' value='"nombre"+${afiliado.idAfiliado}' />
-										<c:set var='inputSaldo' value='"saldo"+${afiliado.idAfiliado}' />
-										<c:set var='inputMotivo' value='"motivo"+${afiliado.idAfiliado}' />
+										<c:set var='inputCheck' value='check+${afiliado.idAfiliado}' />
+										<c:set var='inputId' value='id+${afiliado.idAfiliado}' />
+										<c:set var='inputNombre' value='nombre+${afiliado.idAfiliado}' />
+										<c:set var='inputSaldo' value='saldo+${afiliado.idAfiliado}' />
+										<c:set var='inputMotivo' value='motivo+${afiliado.idAfiliado}' />
 										
 											<tr>
 												<td>
@@ -108,7 +108,7 @@
 										</tbody>
 									
 									</table>
-									<a class="" href="${stepFourURL}" data-detail>Continuar</a>
+									<a class="" href="${stepFourURL}">Continuar</a>
 									</aui:form>
 								</div>
 							</div>
