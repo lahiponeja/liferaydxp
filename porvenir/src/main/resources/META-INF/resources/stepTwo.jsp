@@ -35,7 +35,9 @@
 <portlet:actionURL name="stepThree" var="stepThreeURL"></portlet:actionURL>
 							<div class="row">
 								<div class="col-md-12">
-									<table class="table table-sm">
+									<aui:form id="stepTwo" name="stepTwo">
+									
+										<table class="table table-sm">
 										<thead>
 											<tr>
 												<th>
@@ -72,7 +74,9 @@
 										
 											<tr>
 												<td>
-												<aui:input id="${inputCheck}"  name="" type="checkbox" >
+												
+            									<input name='errorMessageAnchor' hidden/>
+												<aui:input id="${inputCheck}"  name="" class="checkbox" type="checkbox" >
 												
 												</aui:input> 
 												</td>
@@ -110,29 +114,63 @@
 										</tbody>
 									
 									</table>
-									<a class="" href="${stepThreeURL}">Continuar</a>
+									<a class="btn btn-primary" href="${stepThreeURL}">Continuar</a>
 									<a class="" data-param>set data</a>
+									</aui:form>
 								</div>
 							</div>
+	<script type="text/javascript">
+
+ //Listen for click on toggle checkbox
+$('#selectAll').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $(':checkbox').each(function() {
+        	console.log("check "+this);
+            this.checked = true;                        
+        });
+        $("#filters select").each(function() {
+        	console.log("select "+this);
+        	this.required = true;                        
+        });
+    }else {
+    	$(':checkbox').each(function() {
+            this.checked = false;                        
+        })
+        $("#filters select").each(function() {
+            this.required = false;                        
+        })
+    	
+    	
+    }
+    
+}); 
+
+
+
+</script>		
+
+				
 
 <aui:script use="aui-node,aui-io-request,aui-base">
-      
-	A.on('click', function() {
+
+
+
+A.on('click', function() {
 	
-	debugger;
-	var group = new A.CheckboxGroup(A.all(':checkbox'))
-    console.log(group.cb_list);
-	    	        	
-	 group.cb_list.each(function() {
-	    	        		var currentNode = this;
-	    	        		console.log("check is chacked "+this);
-	    	        		var checki = this.getAttribute('checked')
-	    	        		debugger;
-	    	            	console.log("check is chacked "+checki);
-	    	                                       
-	    	            });
-	
-	AUI().use('aui-io-request', function(A){
+	AUI().use('aui-node', function(A){
+		A.one('.btn').on('click', function(){
+			debugger;
+		    var values = [];
+		    A.all('input[type=checkbox]').each(function(){
+		        if(this.get('checked')){
+		            values.push(this.get('value'));
+		        }
+		    });
+		    console.log(values);
+		}); });
+		
+		AUI().use('aui-io-request', function(A){
 		A.io.request('<%=dataURL.toString()%>', { 
 			method: 'post', 
 				on: {

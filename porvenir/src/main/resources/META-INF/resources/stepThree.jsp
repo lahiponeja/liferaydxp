@@ -108,7 +108,7 @@
 										</tbody>
 									
 									</table>
-									<a class="" href="${stepFourURL}">Continuar</a>
+									<a class="btn btn-primary" href="${stepFourURL}">Continuar</a>
 									</aui:form>
 								</div>
 							</div>
