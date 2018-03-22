@@ -16,7 +16,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 /**
  * Clase utilitaria para uso generico del demo para porvenir.
  * 
- * @author luis.hernandez
+ * @author luis.hernandez v
  */
 public class CommonsUtil {
 
