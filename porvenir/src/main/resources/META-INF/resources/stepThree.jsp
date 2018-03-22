@@ -82,10 +82,17 @@
 												</aui:select>		
 												</td>
 												<td>
-												<aui:input id="inputNoDocumento+${afiliado.idAfiliado}" name="" type="text" value="${afiliado.idAfiliado}" disabled="disabled"></aui:input>
+													<aui:select value="${afiliado.tipoDocumentoBeneficiario}" class="btn btn-primary dropdown-toggle" id="tipoDocBen${afiliado.idAfiliado}" showEmptyOption="true"  name=""  placeholder="Seleccione">
+	            										<aui:option value="RetiroCesantiasPorlet.CC"><liferay-ui:message key="RetiroCesantiasPorlet.CC" /></aui:option>
+													    <aui:option value="RetiroCesantiasPorlet.CE"><liferay-ui:message key="RetiroCesantiasPorlet.CE" /></aui:option>
+													    <aui:option value="RetiroCesantiasPorlet.NIT"><liferay-ui:message key="RetiroCesantiasPorlet.NIT" /></aui:option>
+												</aui:select>		
 												</td>
 												<td>
-												<aui:input id="inputNombreRazon+${afiliado.idAfiliado}" name="" type="text" value="${afiliado.nombreAfiliado}" disabled="disabled"></aui:input>
+												<aui:input id="inputNoDocumento+${afiliado.idAfiliado}" name="" type="text" value="${afiliado.numeroDocumentoBeneficiario}" disabled="disabled"></aui:input>
+												</td>
+												<td>
+												<aui:input id="inputNombreRazon+${afiliado.idAfiliado}" name="" type="text" value="${afiliado.razonSocialBeneficiario}" disabled="disabled"></aui:input>
 												</td>
 												
 												<td>
@@ -101,7 +108,7 @@
 										</tbody>
 									
 									</table>
-									<aui:button type="submit" class="btn btn-primary" id="btnNextStepThree" name="btnNextStepThree" value="RetiroCesantiasPorlet.continuar" aria-disabled="true"></aui:button>
+									<a class="" href="${stepFourURL}" data-detail>Continuar</a>
 									</aui:form>
 								</div>
 							</div>
