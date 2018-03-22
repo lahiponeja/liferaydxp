@@ -195,3 +195,12 @@
   );
 
 </script>
+
+<style>
+	.acceptFiles{
+		color:red;
+	}
+	.customRuleForFile{
+		color:red;
+	}
+</style>
