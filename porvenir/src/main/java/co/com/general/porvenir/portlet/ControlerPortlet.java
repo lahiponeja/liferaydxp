@@ -1,7 +1,5 @@
 package co.com.general.porvenir.portlet;
 
-import com.axa.portal.col.distributor.service.ObjectTransformer;
-import com.axa.portal.col.distributor.service.ServiceConsumer;
 import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
@@ -39,6 +37,8 @@ import co.com.RetiroCesantiasPorlet.constants.RetiroCesantiasPortletKeys;
 import co.com.general.porvenir.constants.ControlerPortletKeys;
 import co.com.general.porvenir.dto.Afiliado;
 import co.com.general.porvenir.poi.ApachePOIExcelRead;
+import co.com.general.provenir.service.ObjectTransformer;
+import co.com.general.provenir.service.ServiceConsumer;
 import co.com.porvenir.ws.ConsultaAfiliadosResponse;
 
 /**

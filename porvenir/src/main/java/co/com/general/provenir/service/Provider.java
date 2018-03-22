@@ -1,4 +1,4 @@
-package com.axa.portal.col.distributor.service;
+package co.com.general.provenir.service;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;

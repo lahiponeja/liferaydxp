@@ -1,4 +1,4 @@
-package com.axa.portal.col.distributor.service;
+package co.com.general.provenir.service;
 
 import java.util.ArrayList;
 import java.util.List;
