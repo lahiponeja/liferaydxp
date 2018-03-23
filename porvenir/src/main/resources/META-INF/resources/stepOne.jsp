@@ -63,6 +63,9 @@
 				<liferay-ui:message key="RetiroCesantiasPorlet.descargue" />
 			</h1>
 		</div>
+			<div>
+				<span>Hola este es un cambio, realizado el dia 23 de Marzo en el laboratorio digital para <b>Porvenir</b></span>
+			</div>
 		<dl>
 			<dt>
 				<liferay-ui:message key="RetiroCesantiasPorlet.diligencio" />
