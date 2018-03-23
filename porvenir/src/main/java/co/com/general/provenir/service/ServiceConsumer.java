@@ -13,8 +13,9 @@ import co.com.porvenir.ws.RetiroResponse;
 
 /**
  * @author USER
- *
+ * Singleton Pattern
  */
+
 public enum ServiceConsumer {
 
 	INSTANCE;

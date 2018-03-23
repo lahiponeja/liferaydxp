@@ -7,6 +7,7 @@ import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
  * Clase para configurar los endpoints de los WS
  * @author USER
  */
+
 public class Enviroment {
 	
 	private final static String SERVICE_URL = "service-url";

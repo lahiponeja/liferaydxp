@@ -9,7 +9,7 @@ import co.com.porvenir.ws.ConsultaAfiliadosResponse;
 
 /**
  * @author USER
- *
+ * Facade Pattern
  */
 public class ObjectTransformer {
 	

@@ -19,6 +19,10 @@ public class Afiliado {
 	private String numeroDocumentoBeneficiario;
 	private String razonSocialBeneficiario;
 	
+	//output servicio
+	private double saldoCesantias;
+
+	
 	public String getTipoDocumentoBeneficiario() {
 		return tipoDocumentoBeneficiario;
 	}
@@ -51,8 +55,6 @@ public class Afiliado {
 		this.motivo = motivo;
 	}
 
-	//output servicio
-	private double saldoCesantias;
 
 	
 

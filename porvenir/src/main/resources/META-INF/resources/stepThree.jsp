@@ -57,6 +57,7 @@
 										<c:set var='inputId' value='id+${afiliado.idAfiliado}' />
 										<c:set var='inputNombre' value='nombre+${afiliado.idAfiliado}' />
 										<c:set var='inputSaldo' value='saldo+${afiliado.idAfiliado}' />
+										<c:set var='inputRetiro' value='Retiro+${afiliado.idAfiliado}' />
 										<c:set var='inputMotivo' value='motivo+${afiliado.idAfiliado}' />
 										
 											<tr>
@@ -74,12 +75,7 @@
 													<aui:input id="${inputSaldo}" name="" type="text" value="${afiliado.saldoCesantias}" disabled="disabled"></aui:input>
 												</td>
 												<td>
-													<aui:select value="${afiliado.motivo}" class="btn btn-primary dropdown-toggle" id="${inputMotivo}" showEmptyOption="true"  name=""  placeholder="Seleccione">
-	            										<aui:option value="RetiroCesantiasPorlet.educacion"><liferay-ui:message key="RetiroCesantiasPorlet.educacion" /></aui:option>
-													    <aui:option value="RetiroCesantiasPorlet.retiro"><liferay-ui:message key="RetiroCesantiasPorlet.retiro" /></aui:option>
-													    <aui:option value="RetiroCesantiasPorlet.vivienda"><liferay-ui:message key="RetiroCesantiasPorlet.vivienda" /></aui:option>
-													    <aui:option value="RetiroCesantiasPorlet.otro"><liferay-ui:message key="RetiroCesantiasPorlet.otro" /></aui:option>
-												</aui:select>		
+													<aui:input id="${inputRetiro}" name="" type="text" value="${afiliado.montoRetiro}" disabled="disabled"></aui:input>
 												</td>
 												<td>
 													<aui:select value="${afiliado.tipoDocumentoBeneficiario}" class="btn btn-primary dropdown-toggle" id="tipoDocBen${afiliado.idAfiliado}" showEmptyOption="true"  name=""  placeholder="Seleccione">

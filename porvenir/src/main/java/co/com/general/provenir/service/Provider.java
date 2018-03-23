@@ -11,6 +11,11 @@ import javax.xml.namespace.QName;
 import co.com.porvenir.ws.ServicioWebCesantiasAfiliados;
 import co.com.porvenir.ws.ServicioWebCesantiasAfiliadosService;
 
+/**
+ * @author USER
+ * Singleton Pattern
+ */
+
 public enum Provider {
 	
 	INSTANCE;
