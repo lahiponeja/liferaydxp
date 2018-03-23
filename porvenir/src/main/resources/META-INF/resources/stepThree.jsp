@@ -7,14 +7,14 @@
 <portlet:actionURL name="stepFour" var="stepFourURL"></portlet:actionURL>
 <%
 
-	 List<Afiliado> afiliados = (List<Afiliado>)renderRequest.getAttribute("afiliados"); 
+	/* List<Afiliado> afiliados = (List<Afiliado>)renderRequest.getAttribute("afiliados"); 
 	//List<Afiliado> afiliados =  new ArrayList();
-	//System.out.println(afiliados.size());
-	if (afiliados != null && !afiliados.isEmpty()) {
+	System.out.println(afiliados.size());
+	if (afiliados != null && !afiliados.isEmpty()) */
 %>    
 							<div class="row">
 								<div class="col-md-12">
-									<aui:form id="stepThree" name="stepThree" action="${stepFourURL}" method="post" enctype="multipart/form-data">
+									<aui:form id="stepThree" name="stepThree" action="${stepThreeURL}" method="post" enctype="multipart/form-data">
 									<table class="table table-sm">
 										<thead>
 											<tr>
@@ -51,7 +51,6 @@
 											</tr>
 										</thead>
 										<tbody>
-<<<<<<< HEAD
 
 										 <c:forEach items='${afiliados}' var='afiliado'>
 										<c:set var='inputCheck' value='check+${afiliado.idAfiliado}' />
@@ -60,47 +59,36 @@
 										<c:set var='inputSaldo' value='saldo+${afiliado.idAfiliado}' />
 										<c:set var='inputRetiro' value='Retiro+${afiliado.idAfiliado}' />
 										<c:set var='inputMotivo' value='motivo+${afiliado.idAfiliado}' />
-=======
-										<% 
-											for(int i=0; i<afiliados.size(); i++){
-												Afiliado afiliado = afiliados.get(i);
-										%>
-										
->>>>>>> branch 'master' of https://github.com/mfelipeac/Demo.git
 										
 											<tr>
 												<td>
-												<aui:input id=""  name="" type="checkbox" >
+												<aui:input id="${inputCheck}"  name="" type="checkbox" >
 												</aui:input> 
 												</td>
 												<td> 
-												<aui:input id="" name="" type="text" value="<%=afiliado.getIdAfiliado() %>" disabled="disabled"></aui:input>
+												<aui:input id="${inputId}" name="" type="text" value="${afiliado.idAfiliado}" disabled="disabled"></aui:input>
 												</td>
 												<td>
-												<aui:input id="" name="" type="text" value="<%=afiliado.getNombreAfiliado() %>" disabled="disabled"></aui:input>
+												<aui:input id="${inputNombre}" name="" type="text" value="${afiliado.nombreAfiliado}" disabled="disabled"></aui:input>
 												</td>
 												<td>
-													<aui:input id="" name="" type="text" value="<%=afiliado.getSaldoCesantias() %>" disabled="disabled"></aui:input>
+													<aui:input id="${inputSaldo}" name="" type="text" value="${afiliado.saldoCesantias}" disabled="disabled"></aui:input>
 												</td>
 												<td>
-<<<<<<< HEAD
 													<aui:input id="${inputRetiro}" name="" type="text" value="${afiliado.montoRetiro}" disabled="disabled"></aui:input>
-=======
-												<aui:input id="" name="" type="text" value="" disabled="disabled"></aui:input>
->>>>>>> branch 'master' of https://github.com/mfelipeac/Demo.git
 												</td>
 												<td>
-													<aui:select value="" class="btn btn-primary dropdown-toggle" id="" showEmptyOption="true"  name=""  placeholder="Seleccione">
+													<aui:select value="${afiliado.tipoDocumentoBeneficiario}" class="btn btn-primary dropdown-toggle" id="tipoDocBen${afiliado.idAfiliado}" showEmptyOption="true"  name=""  placeholder="Seleccione">
 	            										<aui:option value="RetiroCesantiasPorlet.CC"><liferay-ui:message key="RetiroCesantiasPorlet.CC" /></aui:option>
 													    <aui:option value="RetiroCesantiasPorlet.CE"><liferay-ui:message key="RetiroCesantiasPorlet.CE" /></aui:option>
 													    <aui:option value="RetiroCesantiasPorlet.NIT"><liferay-ui:message key="RetiroCesantiasPorlet.NIT" /></aui:option>
 												</aui:select>		
 												</td>
 												<td>
-												<aui:input id="" name="" type="text" value="" disabled="disabled"></aui:input>
+												<aui:input id="inputNoDocumento+${afiliado.idAfiliado}" name="" type="text" value="${afiliado.numeroDocumentoBeneficiario}" disabled="disabled"></aui:input>
 												</td>
 												<td>
-												<aui:input id="" name="" type="text" value="" disabled="disabled"></aui:input>
+												<aui:input id="inputNombreRazon+${afiliado.idAfiliado}" name="" type="text" value="${afiliado.razonSocialBeneficiario}" disabled="disabled"></aui:input>
 												</td>
 												
 												<td>
@@ -110,9 +98,7 @@
 												</td>
 												
 											</tr>
-											<% 
-												}
-											%>
+										</c:forEach>
 												
 										
 										</tbody>
@@ -122,5 +108,5 @@
 									</aui:form>
 								</div>
 							</div>
-<% } %>
+
 

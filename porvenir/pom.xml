@@ -247,9 +247,9 @@
 			</activation>
 			<properties>
 				<build.profile.id>dev</build.profile.id>
-				<wsdl.url>http://200.119.44.98:9000/ServicioCesantiasAfiliados?wsdl</wsdl.url>
+				<!--<wsdl.url>http://200.119.44.98:9000/ServicioCesantiasAfiliados?wsdl</wsdl.url>-->
 <!-- 				<wsdl.url>http://localhost:9000/ServicioCesantiasAfiliados?wsdl</wsdl.url> -->
-				<!-- <wsdl.url>http://192.168.56.36:9000/ServicioCesantiasAfiliados?wsdl</wsdl.url>-->
+				<wsdl.url>http://192.168.56.36:9000/ServicioCesantiasAfiliados?wsdl</wsdl.url>
 			</properties>
 		</profile>
 		
