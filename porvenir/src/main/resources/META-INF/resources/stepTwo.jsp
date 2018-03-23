@@ -5,8 +5,13 @@
 <%@ page import="co.com.general.porvenir.dto.Afiliado"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<portlet:resourceURL id="/data/event" var="dataURL" />
+<%
 
+	 List<Afiliado> afiliados = (List<Afiliado>)renderRequest.getAttribute("afiliados"); 
+	//List<Afiliado> afiliados =  new ArrayList();
+	//System.out.println(afiliados.size());
+	if (afiliados != null && !afiliados.isEmpty()) {
+%>    
 <p>
 	<b><liferay-ui:message key="RetiroCesantiasPorlet.caption" /></b>
 </p>
@@ -56,36 +61,38 @@
 						</tr>
 					</thead>
 					<tbody>
-
-						<c:forEach items='${afiliados}' var='afiliado'>
-							<c:set var='inputCheck' value='check${afiliado.idAfiliado}' />
-							<c:set var='inputId' value='id${afiliado.idAfiliado}' />
-							<c:set var='inputNombre' value='nombre${afiliado.idAfiliado}' />
-							<c:set var='inputSaldo' value='saldo${afiliado.idAfiliado}' />
-							<c:set var='inputMotivo' value='motivo${afiliado.idAfiliado}' />
+						<% 
+											for(int i=0; i<afiliados.size(); i++){
+												Afiliado afiliado = afiliados.get(i);
+										%>
+							<c:set var='inputCheck' value='check+${afiliado.idAfiliado}' />
+							<c:set var='inputId' value='id+${afiliado.idAfiliado}' />
+							<c:set var='inputNombre' value='nombre+${afiliado.idAfiliado}' />
+							<c:set var='inputSaldo' value='saldo+${afiliado.idAfiliado}' />
+							<c:set var='inputMotivo' value='motivo+${afiliado.idAfiliado}' />
 
 							<tr>
 								<td>
 									<!--             									<input name='errorMessageAnchor' hidden/> -->
 									<aui:input id="${inputCheck}" name=""
 										class="checkbox selectorCheck"
-										data-param="${afiliado.idAfiliado}" type="checkbox">
+										type="checkbox">
 									</aui:input>
 								</td>
 								<td><aui:input id="${inputId}" name=""
-										type="text" value="${afiliado.idAfiliado}" disabled="disabled">
+										type="text" value="<%=afiliado.getIdAfiliado() %>" disabled="disabled">
 									</aui:input></td>
 								<td><aui:input id="${inputNombre}" name=""
-										type="text" value="${afiliado.nombreAfiliado}"
+										type="text" value="<%=afiliado.getNombreAfiliado() %>"
 										disabled="disabled">
 									</aui:input></td>
 								<td><aui:input id="${inputSaldo}" name=""
-										type="text" value="${afiliado.saldoCesantias}"
+										type="text" value="<%=afiliado.getSaldoCesantias() %>"
 										disabled="disabled">
 									</aui:input></td>
-								<td><aui:select value="${afiliado.motivo}"
-										class="btn btn-primary dropdown-toggle" id="${inputMotivo}"
-										showEmptyOption="true" required="true" name="${inputMotivo}"
+								<td><aui:select value=""
+										class="btn btn-primary dropdown-toggle" id=""
+										showEmptyOption="true" required="true" name=""
 										placeholder="Seleccione">
 										<aui:option value="RetiroCesantiasPorlet.educacion">
 											<liferay-ui:message key="RetiroCesantiasPorlet.educacion" />
@@ -105,7 +112,9 @@
 								</a></td>
 
 							</tr>
-						</c:forEach>
+							<% 
+												}
+											%>
 
 					</tbody>
 
@@ -115,21 +124,7 @@
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript"> 
-
-AUI().on('click', function() {
-	console.log('alert para los checkbox 3');
-	var data = this.attr('data-param');
-	console.log(data);
-	var idElement = "#<portlet:namespace />motivo+"+data;
-	console.log(idElement);
-	AUI().one(idElement).attr({'required' : true});
-	//AUI().one('#_Controler_INSTANCE_qW6cRb2l27Ii_motivoCC1111').attr({'required' : true});
-}, '[data-param]');
-
-</script>
-
+<% } %>
 <style>
 .control-label{
 	display:none;
