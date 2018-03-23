@@ -5,8 +5,13 @@
 <%@ page import="co.com.general.porvenir.dto.Afiliado"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<portlet:resourceURL id="/data/event" var="dataURL" />
+<%
 
+	 List<Afiliado> afiliados = (List<Afiliado>)renderRequest.getAttribute("afiliados"); 
+	//List<Afiliado> afiliados =  new ArrayList();
+	//System.out.println(afiliados.size());
+	if (afiliados != null && !afiliados.isEmpty()) {
+%>    
 <p>
 	<b><liferay-ui:message key="RetiroCesantiasPorlet.caption"/></b>
 </p>
@@ -115,9 +120,84 @@
 								</div>
 							</div>
 
+<<<<<<< HEAD
 <aui:script use="aui-node,aui-io-request,aui-base">
       
 	A.on('click', function() {
+=======
+						</tr>
+					</thead>
+					<tbody>
+						<% 
+											for(int i=0; i<afiliados.size(); i++){
+												Afiliado afiliado = afiliados.get(i);
+										%>
+							<c:set var='inputCheck' value='check+${afiliado.idAfiliado}' />
+							<c:set var='inputId' value='id+${afiliado.idAfiliado}' />
+							<c:set var='inputNombre' value='nombre+${afiliado.idAfiliado}' />
+							<c:set var='inputSaldo' value='saldo+${afiliado.idAfiliado}' />
+							<c:set var='inputMotivo' value='motivo+${afiliado.idAfiliado}' />
+
+							<tr>
+								<td>
+									<!--             									<input name='errorMessageAnchor' hidden/> -->
+									<aui:input id="${inputCheck}" name=""
+										class="checkbox selectorCheck"
+										type="checkbox">
+									</aui:input>
+								</td>
+								<td><aui:input id="${inputId}" name=""
+										type="text" value="<%=afiliado.getIdAfiliado() %>" disabled="disabled">
+									</aui:input></td>
+								<td><aui:input id="${inputNombre}" name=""
+										type="text" value="<%=afiliado.getNombreAfiliado() %>"
+										disabled="disabled">
+									</aui:input></td>
+								<td><aui:input id="${inputSaldo}" name=""
+										type="text" value="<%=afiliado.getSaldoCesantias() %>"
+										disabled="disabled">
+									</aui:input></td>
+								<td><aui:select value=""
+										class="btn btn-primary dropdown-toggle" id=""
+										showEmptyOption="true" required="true" name=""
+										placeholder="Seleccione">
+										<aui:option value="RetiroCesantiasPorlet.educacion">
+											<liferay-ui:message key="RetiroCesantiasPorlet.educacion" />
+										</aui:option>
+										<aui:option value="RetiroCesantiasPorlet.retiro">
+											<liferay-ui:message key="RetiroCesantiasPorlet.retiro" />
+										</aui:option>
+										<aui:option value="RetiroCesantiasPorlet.vivienda">
+											<liferay-ui:message key="RetiroCesantiasPorlet.vivienda" />
+										</aui:option>
+										<aui:option value="RetiroCesantiasPorlet.otro">
+											<liferay-ui:message key="RetiroCesantiasPorlet.otro" />
+										</aui:option>
+									</aui:select></td>
+								<td><a href="#"> <span
+										class="glyphicon glyphicon-trash"></span>
+								</a></td>
+
+							</tr>
+							<% 
+												}
+											%>
+
+					</tbody>
+
+				</table>
+				<aui:button type="submit" value="Continuar" />
+			</aui:form>
+		</div>
+	</div>
+</div>
+<% } %>
+<style>
+.control-label{
+	display:none;
+}
+</style>
+>>>>>>> branch 'master' of https://github.com/mfelipeac/Demo.git
 	
 	debugger;
 	var group = new A.CheckboxGroup(A.all(':checkbox'))
